@@ -121,19 +121,22 @@
 		$qr = @strip_tags($_POST['qr']);
 		$cash = @strip_tags($_POST['cash']);
 		$delivery = @strip_tags($_POST['delivery']);
-		$phone = @strip_tags($_POST['phone']);
 		$address = @strip_tags($_POST['address']);
 		$add = @strip_tags($_POST['add']);
 		$preorder = @strip_tags($_POST['preorder']);
+
+		$phone = @strip_tags($_POST['phone']);
+      $phone2 = substr($phone, 1);
+
       
 		$cashbox_number = product::next_number_order($start_cdate, $end_cdate, $branch);
 
-      $upd = db::query("UPDATE `retail_orders` SET `paid` = 1, `total` = '$total', `branch_id` = '$branch', `upd_dt` = '$datetime' WHERE `id`='$id'");
+      $upd = db::query("UPDATE `retail_orders` SET `paid` = 1, `total` = '$total', `branch_id` = '$branch', `ins_dt` = '$datetime', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if (!$nm) $upd = db::query("UPDATE `retail_orders` SET `number` = '$cashbox_number', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($qr) $upd = db::query("UPDATE `retail_orders` SET `pay_qr` = '$qr', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($delivery) $upd = db::query("UPDATE `retail_orders` SET `pay_delivery` = '$delivery', `upd_dt` = '$datetime' WHERE `id`='$id'");
       else $upd = db::query("UPDATE `retail_orders` SET `order_status` = 2, `upd_dt` = '$datetime' WHERE `id`='$id'");
-      if ($phone) $upd = db::query("UPDATE `retail_orders` SET `phone` = '$phone', `upd_dt` = '$datetime' WHERE `id`='$id'");
+      if ($phone) $upd = db::query("UPDATE `retail_orders` SET `phone` = '$phone2', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($address) $upd = db::query("UPDATE `retail_orders` SET `address` = '$address', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($add) $upd = db::query("UPDATE `retail_orders` SET `additional` = '$add', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($preorder) $upd = db::query("UPDATE `retail_orders` SET `preorder_dt` = '$preorder', `upd_dt` = '$datetime' WHERE `id`='$id'");

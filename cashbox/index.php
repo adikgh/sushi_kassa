@@ -166,7 +166,7 @@
 					<div class="">
 						<div class="form_im ">
 							<div class="form_span">Нөмір:</div>
-							<input type="tel" class="form_txt fr_phone btype_phone" placeholder="8 (700) 000-00-00" data-val="0">
+							<input type="tel" class="form_txt fr_phone btype_phone" placeholder="8 (700) 000-00-00" data-val="">
 							<i class="fal fa-phone-alt form_icon"></i>
 						</div>
 					</div>

@@ -371,7 +371,7 @@ $(document).ready(function() {
          data: ({ 
             id: btn.data('id'),
             nm: btn.data('nm'),
-            phone: $('.btype_phone').val(),
+            phone: $('.btype_phone').attr('data-val'),
             address: $('.btype_address').attr('data-val'),
             add: $('.btype_add').attr('data-val'),
             preorder: $('.btype_preorder').attr('data-val'),
