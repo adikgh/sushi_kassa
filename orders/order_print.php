@@ -110,7 +110,7 @@
             <td><br><b>Клиент</b></td>
         </tr>
         <tr class="tr">
-            <td align="left" сolspan="3">Номер: <?=$cashbox_d['phone']?></td>
+            <td align="left" сolspan="3">Номер: 8<?=$cashbox_d['phone']?></td>
         </tr>
         <tr class="tr">
             <td align="left" сolspan="3">Адрес: <?=$cashbox_d['address']?></td>

@@ -1,4 +1,4 @@
-<?php include "config/core.php";
+<? include "config/core.php";
 
 	// sign in code
 	if(isset($_GET['code'])) {
