@@ -50,11 +50,12 @@
 						<? while ($buy_d = mysqli_fetch_assoc($orders)): ?>
 							<? if ($buy_d['сourier_id']) $сourier_d = fun::user($buy_d['сourier_id']); ?>
 
-							<div class="uc_ui">
+							<div class="uc_ui on_info" data-id="<?=$buy_d['id']?>">
 								<div class="uc_uil2" href="list.php?id=<?=$buy_d['id'].($type=='return'?'&type=return':'')?>">
 									<div class="uc_ui_number"><?=$buy_d['number']?></div>
 									<div class="uc_uin_other"><?=$buy_d['phone']?></div>
 									<div class="uc_uin_other"><?=$buy_d['address']?></div>
+									<div class="uc_uin_other"><?=date("H:i", strtotime($buy_d['ins_dt']))?></div>
 									<div class="uc_uin_other">
 										<select name="" id="" class="on_status" data-order-id="<?=$buy_d['id']?>" >
 											<? $orders_status = db::query("select * from retail_orders_status"); ?>
@@ -98,6 +99,7 @@
 							<div class="uc_ui_number">0</div>
 							<div class="uc_uin_other"></div>
 							<div class="uc_uin_other"></div>
+							<div class="uc_uin_other"></div>
 							<div class="uc_uin_other">
 								<select name="status" class="on_sort_status" data-order-id="<?=$buy_d['id']?>" >
 									<option data-id="" value="">Барлығы</option>
@@ -133,6 +135,7 @@
 						<div class="uc_uh_number">#</div>
 						<div class="uc_uh_other">Номер</div>
 						<div class="uc_uh_other">Адрес</div>
+						<div class="uc_uh_other">Уақыты</div>
 						<div class="uc_uh_other">Статус</div>
 						<div class="uc_uh_other">Курьер / Собой</div>
 						<div class="uc_uh_other">Общий сумма</div>
@@ -156,47 +159,19 @@
 
 <? include "../block/footer.php"; ?>
 
-
+	
 	<!--  -->
-	<div class="pop_bl pop_bl2 cashbox_pay_block">
-		<div class="pop_bl_a cashbox_pay_back"></div>
+	<div class="pop_bl pop_bl2 on_info_block">
+		<div class="pop_bl_a on_info_back"></div>
 		<div class="pop_bl_c">
 			<div class="head_c">
-				<h4>Оплата</h4>
-				<div class="btn btn_dd cashbox_pay_back"><i class="fal fa-times"></i></div>
+				<h4>Инфо</h4>
+				<div class="btn btn_dd on_info_back"><i class="fal fa-times"></i></div>
 			</div>
 			<div class="pop_bl_cl">
-				<div class="form_c">
-
-					<div class="">
-						<div class="form_im">
-							<div class="form_span">Номер заказа:</div>
-							<input type="tel" class="form_txt fr_number2 order_number_sel" placeholder="0" value="" data-val="">
-							<i class="fal fa-solar-panel form_icon"></i>
-						</div>
-						<div class="form_im ">
-							<div class="form_span">Общий цена:</div>
-							<input type="tel" class="form_txt fr_price btype_totol" placeholder="0" data-val="0">
-							<i class="fal fa-tenge form_icon"></i>
-						</div>
-						<div class="form_im ">
-							<div class="form_span">Доставка:</div>
-							<input type="tel" class="form_txt fr_price btype_delivery" placeholder="0" data-val="0">
-							<i class="fal fa-tenge form_icon"></i>
-						</div>
-						<div class="form_im ">
-							<div class="form_span">Предоплата:</div>
-							<input type="tel" class="form_txt fr_price btype_qr" placeholder="0" value="" data-val="">
-							<i class="fal fa-tenge form_icon"></i>
-						</div>
-					</div>
-
-					<div class="form_im">
-						<div class="btn cashbox_pay2" data-branch="<?=$branch?>">Сақтау</div>
-					</div>
+				<div class="osigoi">
 
 				</div>
-
 			</div>
 		</div>
 	</div>

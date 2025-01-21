@@ -27,3 +27,72 @@
    width: 44px;
    height: 44px;
 }
+
+
+
+
+
+
+
+
+
+
+
+.uc_uil2_raz{
+   margin-top: 15px;
+   padding-top: 15px;
+   border-top: 1px solid var(--gr2);
+}
+
+
+.uc_uil2_trt{
+   position: relative;
+   width: 100%;
+
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   margin-bottom: 5px;
+}
+.uc_uil2_trt1, .uc_uil2_trt2, .uc_uil2_trt3{
+   font-size: 12px;
+}
+.uc_uil2_trt1{
+   width: 50%;
+}
+.uc_uil2_trt2{
+   width: 15%;
+   text-align: center;
+}
+.uc_uil2_trt3{
+   width: 35%;
+   text-align: right;
+}
+
+.uc_uil2_trc{
+   margin-top: 10px;
+}
+.uc_uil2_trc .uc_uil2_trt1, .uc_uil2_trc .uc_uil2_trt2, .uc_uil2_trc .uc_uil2_trt3{
+   font-size: 14px;
+}
+
+
+.uc_uil2_trb{
+   position: relative;
+   width: 100%;
+   margin-top: 10px;
+
+   display: flex;
+   justify-content: space-between;
+   align-items: stretch;
+}
+.uc_uil2_trb .uc_uil2_trt1, .uc_uil2_trb .uc_uil2_trt3{
+   font-size: 16px;
+   font-weight: 700;
+   padding-top: 10px;
+}
+.uc_uil2_trb .uc_uil2_trt2, .uc_uil2_trb .uc_uil2_trt3{
+   border-top: 1px solid var(--gr2);
+   padding-top: 10px;
+}

@@ -132,6 +132,36 @@ $(document).ready(function() {
 
 
 
+   // cashbox_pay
+	$('.on_info').click(function(){
+		$('.on_info_block').addClass('pop_bl_act');
+		$('#html').addClass('ovr_h');
+
+      $.ajax({
+         url: "/orders/info.php",
+         type: "POST",
+         dataType: "html",
+         data: ({ 
+            id: $(this).attr('data-id'),
+         }),
+         success: function(data){
+            $('.osigoi').html(data)
+         },
+         beforeSend: function(){ },
+         error: function(data){ }
+      })
+	})
+	$('.on_info_back').click(function(){
+		$('.on_info_block').removeClass('pop_bl_act');
+		$('#html').removeClass('ovr_h');
+	})
+
+
+
+
+
+
+
 
 
 

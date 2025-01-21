@@ -63,15 +63,15 @@
 
  // setting
  $site = mysqli_fetch_array(db::query("select * from `site` where id = 1"));
- $ver = 1.030954;
+ $ver = 1.04;
 
  // 
  $site_set = [
-    'menu' => true,
-    'search' => true,
-    // 'swiper' => false,
-    // 'plyr' => false,
-    // 'aos' => false,
+   'menu' => true,
+   'search' => true,
+   // 'swiper' => false,
+   // 'plyr' => false,
+   // 'aos' => false,
  ];
  $scss = ['norm', 'main'];
  $sjs = ['norm', 'main'];
