@@ -8,67 +8,19 @@
    	$type = @$_GET['type'];
 
 
-	// if (@$_GET['status']) {
-	// 	$status = $_GET['status'];
-	// 	$orders_all = db::query("select * from retail_orders where ins_dt LIKE '%$currentdate%' and order_status = '$status' ");
-	// } else $orders_all = db::query("select * from retail_orders where ins_dt LIKE '%$currentdate%' ");
-	// $page_result = mysqli_num_rows($orders_all);
-	// $orders = '';
-
-	
-
-	// filter user all
-	// if ($type != 'return') {
-	// 	if ($_GET['on'] == 1) $orders_all = db::query("select * from retail_orders where paid = 1 ");
-	// 	elseif ($_GET['off'] == 1) $orders_all = db::query("select * from retail_orders where paid = 1 ");
-	// 	else 
-
-	// } else {
-	// 	if ($_GET['on'] == 1) $orders_all = db::query("select * from retail_returns where returns = 1 ");
-	// 	elseif ($_GET['off'] == 1) $orders_all = db::query("select * from retail_returns where returns = 1 ");
-	// 	else $orders_all = db::query("select * from retail_returns where returns = 1 ");
-	// 	$page_result = mysqli_num_rows($orders_all);
-	// }
-
-	// $orders_all = db::query("select * from retail_orders where ins_dt LIKE '%$currentdate%' ");
-	// $page_result = mysqli_num_rows($orders_all);
-	// $orders = '';
-
-	// if ($page_result) {
-		// page number
-		// $page = 1; if (@$_GET['page'] && is_int(intval(@$_GET['page']))) $page = @$_GET['page'];
-		// $page_age = 250;
-		// $page_all = ceil($page_result / $page_age);
-		// if ($page > $page_all) $page = $page_all;
-		// $page_start = ($page - 1) * $page_age;
-		// $number = $page_start;
-
-		// filter cours
-		// if ($type != 'return') {
-		// 	if ($_GET['on'] == 1) $orders = db::query("select * from retail_orders where paid = 1  order by ins_dt desc limit $page_start, $page_age");
-		// 	elseif ($_GET['off'] == 1) $orders = db::query("select * from retail_orders where paid = 1  order by ins_dt desc limit $page_start, $page_age");
-		// 	else 
-		// } else {
-		// 	if ($_GET['on'] == 1) $orders = db::query("select * from retail_returns where returns = 1  order by ins_dt desc limit $page_start, $page_age");
-		// 	elseif ($_GET['off'] == 1) $orders = db::query("select * from retail_returns where returns = 1  order by ins_dt desc limit $page_start, $page_age");
-		// 	else $orders = db::query("select * from retail_returns where returns = 1  order by ins_dt desc limit $page_start, $page_age");
-		// }
-
-		// }
-
-
-
 	if (@$_GET['status'] && @$_GET['staff']) {
 		$status = $_GET['status'];
 		$staff = $_GET['staff'];
-		if ($staff == 'off') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_status = '$status' and сourier_id is null  and branch_id = '$branch' order by number desc");
+		if ($staff == 'off') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_status = '$status' and сourier_id is null and branch_id = '$branch' order by number desc");
+		elseif ($staff == 'soboi') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_status = '$status' and order_type = 2 and branch_id = '$branch' order by number desc");
 		else $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_status = '$status' and сourier_id  = '$staff'  and branch_id = '$branch' order by number desc");
 	} elseif (@$_GET['status']) {
 		$status = $_GET['status'];
 		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_status = '$status'  and branch_id = '$branch' order by number desc");
 	} elseif (@$_GET['staff']) {
 		$staff = $_GET['staff'];
-		if ($staff == 'off') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and сourier_id is null  and branch_id = '$branch' order by number desc");
+		if ($staff == 'off') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_type = 1 and сourier_id is null and branch_id = '$branch' order by number desc");
+		elseif ($staff == 'soboi') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_type = 2 and branch_id = '$branch' order by number desc");
 		else $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and сourier_id  = '$staff'  and branch_id = '$branch' order by number desc");
 	} else $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate'  and branch_id = '$branch' order by number desc");
 
@@ -96,6 +48,7 @@
 					<? if ($orders != ''): ?>
 					<? if (mysqli_num_rows($orders) != 0): ?>
 						<? while ($buy_d = mysqli_fetch_assoc($orders)): ?>
+							<? if ($buy_d['сourier_id']) $сourier_d = fun::user($buy_d['сourier_id']); ?>
 
 							<div class="uc_ui">
 								<div class="uc_uil2" href="list.php?id=<?=$buy_d['id'].($type=='return'?'&type=return':'')?>">
@@ -106,19 +59,18 @@
 										<select name="" id="" class="on_status" data-order-id="<?=$buy_d['id']?>" >
 											<? $orders_status = db::query("select * from retail_orders_status"); ?>
 											<? while ($orders_status_d = mysqli_fetch_assoc($orders_status)): ?>
-												<option data-id="<?=$orders_status_d['id']?>" <?=($buy_d['order_status'] == $orders_status_d['id']?'selected':'')?> value="" ><?=$orders_status_d['name']?></option>
+												<option data-id="<?=$orders_status_d['id']?>" <?=($buy_d['order_status'] == $orders_status_d['id']?'selected':'')?> value="" ><?=$orders_status_d['name_kz']?></option>
 											<? endwhile ?>
 										</select>
 									</div>
 									<div class="uc_uin_other">
-										<select name="" id="" class="on_staff" data-order-id="<?=$buy_d['id']?>" >
-											<option value="" >Не выбрано</option>
-											<? $staff = db::query("select * from user_staff where positions_id = 6"); ?>
-											<? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
-												<? $staff_user_d = fun::user($staff_d['user_id']); ?>
-												<option value="" data-id="<?=$staff_d['user_id']?>" <?=($buy_d['сourier_id'] == $staff_d['user_id']?'selected':'')?>><?=$staff_user_d['name']?></option>
-											<? endwhile ?>
-										</select>
+										<? if ($buy_d['сourier_id']) :?> <?=$сourier_d['name']?>
+										<? else: ?>
+											<select name="" id="" class="on_stype" data-order-id="<?=$buy_d['id']?>" >
+												<option value="" <?=($buy_d['order_type']==1?'selected':'')?>>Курьер</option>
+												<option value="" <?=($buy_d['order_type']==2?'selected':'')?>>Собой</option>
+											</select>
+										<? endif ?>
 									</div>
 									<div class="uc_uin_other fr_price"><?=$buy_d['total']?></div>
 									<div class="uc_uin_other fr_price"><?=$buy_d['pay_qr']?> </div>
@@ -151,13 +103,14 @@
 									<option data-id="" value="">Барлығы</option>
 									<? $orders_status = db::query("select * from retail_orders_status"); ?>
 									<? while ($orders_status_d = mysqli_fetch_assoc($orders_status)): ?>
-										<option data-id="<?=$orders_status_d['id']?>" <?=(@$_GET['status'] == $orders_status_d['id']?'selected':'')?> value="" ><?=$orders_status_d['name']?></option>
+										<option data-id="<?=$orders_status_d['id']?>" <?=(@$_GET['status'] == $orders_status_d['id']?'selected':'')?> value="" ><?=$orders_status_d['name_kz']?></option>
 									<? endwhile ?>
 								</select>
 							</div>
 							<div class="uc_uin_other">
 								<select name="staff" class="on_sort_staff" data-order-id="<?=$buy_d['id']?>" >
 									<option data-id="" value="">Барлығы</option>
+									<option data-id="soboi" <?=(@$_GET['staff'] == 'soboi'?'selected':'')?> value="">Собой</option>
 									<option data-id="off" <?=(@$_GET['staff'] == 'off'?'selected':'')?> value="">Таңдалмаған</option>
 									<? $staff = db::query("select * from user_staff where positions_id = 6"); ?>
 									<? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
@@ -169,7 +122,8 @@
 							<div class="uc_uin_other fr_price"><?=$allorder['total']?></div>
 							<div class="uc_uin_other fr_price"><?=$allorder['pay_qr']?> </div>
 							<div class="uc_uin_other fr_price"><?=$allorder['total'] - $allorder['pay_qr']?></div>
-							<div class="uc_uin_cn on_print " data-id=""></div>
+							<div class="uc_uin_cn " data-id=""></div>
+							<div class="uc_uin_cn " data-id=""></div>
 						</div>
 					</div>
 				</div>
@@ -180,7 +134,7 @@
 						<div class="uc_uh_other">Номер</div>
 						<div class="uc_uh_other">Адрес</div>
 						<div class="uc_uh_other">Статус</div>
-						<div class="uc_uh_other">Курьер</div>
+						<div class="uc_uh_other">Курьер / Собой</div>
 						<div class="uc_uh_other">Общий сумма</div>
 						<div class="uc_uh_other">Предоплата (QR)</div>
 						<div class="uc_uh_other">Наличный</div>

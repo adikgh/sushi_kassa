@@ -61,14 +61,16 @@
 	if (@$_GET['status'] && @$_GET['staff']) {
 		$status = $_GET['status'];
 		$staff = $_GET['staff'];
-		if ($staff == 'off') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_status = '$status' and сourier_id is null  and branch_id = '$branch' order by number desc");
+		if ($staff == 'off') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_status = '$status' and сourier_id is null and branch_id = '$branch' order by number desc");
+		elseif ($staff == 'soboi') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_status = '$status' and order_type = 2 and branch_id = '$branch' order by number desc");
 		else $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_status = '$status' and сourier_id  = '$staff'  and branch_id = '$branch' order by number desc");
 	} elseif (@$_GET['status']) {
 		$status = $_GET['status'];
 		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_status = '$status'  and branch_id = '$branch' order by number desc");
 	} elseif (@$_GET['staff']) {
 		$staff = $_GET['staff'];
-		if ($staff == 'off') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and сourier_id is null  and branch_id = '$branch' order by number desc");
+		if ($staff == 'off') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_type = 1 and сourier_id is null and branch_id = '$branch' order by number desc");
+		elseif ($staff == 'soboi') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_type = 2 and branch_id = '$branch' order by number desc");
 		else $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and сourier_id  = '$staff'  and branch_id = '$branch' order by number desc");
 	} else $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate'  and branch_id = '$branch' order by number desc");
 
@@ -114,7 +116,7 @@
 										<select name="" id="" class="on_status" data-order-id="<?=$buy_d['id']?>" >
 											<? $orders_status = db::query("select * from retail_orders_status"); ?>
 											<? while ($orders_status_d = mysqli_fetch_assoc($orders_status)): ?>
-												<option data-id="<?=$orders_status_d['id']?>" <?=($buy_d['order_status'] == $orders_status_d['id']?'selected':'')?> value="" ><?=$orders_status_d['name']?></option>
+												<option data-id="<?=$orders_status_d['id']?>" <?=($buy_d['order_status'] == $orders_status_d['id']?'selected':'')?> value="" ><?=$orders_status_d['name_kz']?></option>
 											<? endwhile ?>
 										</select>
 									</div>
@@ -161,13 +163,14 @@
 									<option data-id="" value="">Барлығы</option>
 									<? $orders_status = db::query("select * from retail_orders_status"); ?>
 									<? while ($orders_status_d = mysqli_fetch_assoc($orders_status)): ?>
-										<option data-id="<?=$orders_status_d['id']?>" <?=(@$_GET['status'] == $orders_status_d['id']?'selected':'')?> value="" ><?=$orders_status_d['name']?></option>
+										<option data-id="<?=$orders_status_d['id']?>" <?=(@$_GET['status'] == $orders_status_d['id']?'selected':'')?> value="" ><?=$orders_status_d['name_kz']?></option>
 									<? endwhile ?>
 								</select>
 							</div>
 							<div class="uc_uin_other">
 								<select name="staff" class="on_sort_staff" data-order-id="<?=$buy_d['id']?>" >
 									<option data-id="" value="">Барлығы</option>
+									<option data-id="soboi" <?=(@$_GET['staff'] == 'soboi'?'selected':'')?> value="">Собой</option>
 									<option data-id="off" <?=(@$_GET['staff'] == 'off'?'selected':'')?> value="">Таңдалмаған</option>
 									<? $staff = db::query("select * from user_staff where positions_id = 6"); ?>
 									<? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
