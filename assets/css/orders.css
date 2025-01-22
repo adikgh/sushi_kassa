@@ -85,11 +85,11 @@
 }
 .uc_uil2_date{
    position: relative;
-   width: calc(100% - 64px - 44px - 15px);
+   width: calc((100% - 44px - 30px) / 2);
    font-size: 16px;
 }
 .uc_uil2_date:last-child{
-   width: calc(100% - 64px - 15px);
+   width: 100%;
 }
 .uc_uil2_date div:last-child{
    margin-top: 7px;
@@ -100,6 +100,7 @@
    font-weight: 700;
 }
 .uc_uil2_date1 select{
+   width: 100%;
    border: 1px solid var(--gr5);
 }
 
@@ -219,19 +220,17 @@
 
 
 .or_status{
-   position: absolute;
-   top: 0;
-   right: 0;
-   display: inline-block;
-   padding: 8px 10px;
-   color: var(--wh);
-   /* color: var(--cl); */
-   font-size: 16px;
-   font-weight: 700;
-   /* background: var(--gr2); */
+   width: calc((100% - 44px - 30px) / 2);
    border-radius: 8px;
 }
-
+.or_status select{
+   width: 100%;
+   /* color: var(--wh); */
+   background: none;
+   font-size: 16px;
+   font-weight: 700;
+   border-radius: 8px;
+}
 
 
 

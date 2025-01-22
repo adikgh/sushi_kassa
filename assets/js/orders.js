@@ -73,7 +73,7 @@ $(document).ready(function() {
             order_id: btn.attr('data-order-id'),
          }),
          success: function(data){ 
-            // if (data == 'yes') location.reload();
+            if (data == 'yes') location.reload();
             console.log(data);
          },
          beforeSend: function(){ },

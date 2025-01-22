@@ -53,7 +53,6 @@
 							<div class="uc_ui">
 								<div class="uc_uil2" >
 									<div class="uc_uil2_top">
-										<div class="or_status" style="background-color:<?=$order_sts['clr']?>;"><?=$order_sts['name_kz']?></div>
 										<div class="uc_uil2_nmb"><?=$buy_d['number']?></div>
 										<div class="uc_uil2_date">
 											<div class="uc_uil2_date1">
@@ -66,6 +65,14 @@
 													</select>
 												<? endif ?>
 											</div>
+										</div>
+										<div class="or_status" style="background-color:<?=$order_sts['clr']?>;"> <?//=$order_sts['name_kz']?>
+											<select name="" id="" class="on_status" data-order-id="<?=$buy_d['id']?>" >
+												<? $orders_status = db::query("select * from retail_orders_status"); ?>
+												<? while ($orders_status_d = mysqli_fetch_assoc($orders_status)): ?>
+													<option data-id="<?=$orders_status_d['id']?>" <?=($order_sts['id'] == $orders_status_d['id']?'selected':'')?> value="" ><?=$orders_status_d['name_kz']?></option>
+												<? endwhile ?>
+											</select>
 										</div>
 									</div>
 									<br>
