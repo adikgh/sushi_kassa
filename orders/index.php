@@ -151,10 +151,12 @@
 								</div>
 							</div>
 
-							<? 
-								$allorder['total'] = $allorder['total'] + $buy_d['total'];
-								$allorder['pay_qr'] = $allorder['pay_qr'] + $buy_d['pay_qr'];
-								$allorder['pay_delivery'] = $allorder['pay_delivery'] + $buy_d['pay_delivery'] + 500;
+							<?	
+								if ($buy_d['order_status'] != 5 && $buy_d['order_status'] != 6) {
+									$allorder['total'] = $allorder['total'] + $buy_d['total'];
+									$allorder['pay_qr'] = $allorder['pay_qr'] + $buy_d['pay_qr'];
+									$allorder['pay_delivery'] = $allorder['pay_delivery'] + $buy_d['pay_delivery'] + 500;
+								}
 							?>
 
 						<? endwhile ?>
