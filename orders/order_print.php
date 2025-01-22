@@ -46,7 +46,7 @@
                 <td colspan="3" align="center"></td>
             </tr>
         <? endif ?>
-        <? if ($cashbox_d['order_status'] == 2): ?>
+        <? if ($cashbox_d['order_type'] == 2): ?>
             <tr class="tr_title">
                 <td colspan="3">СОБОЙ</td>
             </tr>
@@ -59,6 +59,11 @@
         <tr class="tr">
             <td colspan="3"><b>Номер заказ: <?=$cashbox_d['number']?></b></td>
         </tr>
+        <? if ($cashbox_d['additional']): ?>
+            <tr class="tr">
+                <td align="left" сolspan="3"><?=$cashbox_d['additional']?></td>
+            </tr>
+        <? endif ?>
         <tr class="tr">
             <td colspan="3"></td>
         </tr>
@@ -101,11 +106,6 @@
             <td align="right"><b><?=$cashbox_d['total'] - $cashbox_d['pay_qr']?></b></td>
         </tr>
 
-        <!-- <tr style="height:20px">
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr> -->
         <tr class="tr_border">
             <td><br><b>Клиент</b></td>
         </tr>

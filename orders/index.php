@@ -57,7 +57,7 @@
 											<!-- <div class="uc_uil2_date1"><?//=$branch_d['name']?></div> -->
 											<div class="uc_uil2_date1">
 												<? if ($buy_d['сourier_id']): $сourier_d = fun::user($buy_d['сourier_id']); ?>
-													<?=$сourier_d['name']?>
+													<?=$сourier_d['name']?> | <span class="fr_phone"><?=$сourier_d['phone']?></span>
 												<? else: ?>
 													<? if ($buy_d['order_type'] == 2): ?> Собой
 													<? else: ?> Таңдалмаған <? endif ?>
