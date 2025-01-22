@@ -62,6 +62,19 @@
 }
 
 
+.uc_ui69{
+   background: none;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   padding-left: 0;
+   padding-right: 0;
+}
+.uc_ui69 .uc_uin_other{
+   margin-right: 40px;
+}
+
+
 
 .uc_uil2_top{
    position: relative;

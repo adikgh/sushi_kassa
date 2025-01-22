@@ -55,6 +55,14 @@
 										<div class="uc_uil2_nmb"><?=$buy_d['number']?></div>
 										<div class="uc_uil2_date">
 											<!-- <div class="uc_uil2_date1"><?//=$branch_d['name']?></div> -->
+											<div class="uc_uil2_date1">
+												<? if ($buy_d['сourier_id']): $сourier_d = fun::user($buy_d['сourier_id']); ?>
+													<?=$сourier_d['name']?>
+												<? else: ?>
+													<? if ($buy_d['order_type'] == 2): ?> Собой
+													<? else: ?> Таңдалмаған <? endif ?>
+												<? endif ?>
+											</div>
 											<div class=""><?//=date("d-m-Y", strtotime($buy_d['ins_dt']))?> ⌛ <?=date("H:i", strtotime($buy_d['ins_dt']))?></div>
 										</div>
 									</div>
@@ -127,14 +135,12 @@
 											<div class="btn  on_print" data-id="<?=$buy_d['id']?>">Печать</div>
 										</div>
 									</div>
-
-									<!-- <div class="uc_uin_other fr_price"><?=$buy_d['pay_qr']?> </div> -->
-									<!-- <div class="uc_uin_other fr_price"><?=$buy_d['total'] - $buy_d['pay_qr']?></div> -->
 								</div>
 							</div>
 
 							<? 
-								// $allorder['number'] = $allorder['number'] + 1;
+								$allorder['total'] = $allorder['total'] + $buy_d['total'];
+								$allorder['pay_qr'] = $allorder['pay_qr'] + $buy_d['pay_qr'];
 								$allorder['pay_delivery'] = $allorder['pay_delivery'] + $buy_d['pay_delivery'] + 500;
 							?>
 
@@ -144,10 +150,38 @@
 
 			</div>
 
-			<!-- Осы қатарды қосу қажет -->
-			<!-- <div class="uc_ukb">
-				<div class="btn btn_gr">Барлығы орындалды</div>
-			</div> -->
+		</div>
+
+		<div class="bl_c">
+
+			<div class="">
+				<div class="uc_ui uc_ui69">
+					<div class="uc_uin_other">
+						<select name="status" class="on_sort_status" data-order-id="<?=$buy_d['id']?>" >
+							<option data-id="" value="">Барлығы</option>
+							<? $orders_status = db::query("select * from retail_orders_status"); ?>
+							<? while ($orders_status_d = mysqli_fetch_assoc($orders_status)): ?>
+								<option data-id="<?=$orders_status_d['id']?>" <?=(@$_GET['status'] == $orders_status_d['id']?'selected':'')?> value="" ><?=$orders_status_d['name_kz']?></option>
+							<? endwhile ?>
+						</select>
+					</div>
+					<div class="uc_uin_other">
+						<select name="staff" class="on_sort_staff" data-order-id="<?=$buy_d['id']?>" >
+							<option data-id="" value="">Барлығы</option>
+							<option data-id="soboi" <?=(@$_GET['staff'] == 'soboi'?'selected':'')?> value="">Собой</option>
+							<option data-id="off" <?=(@$_GET['staff'] == 'off'?'selected':'')?> value="">Таңдалмаған</option>
+							<? $staff = db::query("select * from user_staff where positions_id = 6"); ?>
+							<? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
+								<? $staff_user_d = fun::user($staff_d['user_id']); ?>
+								<option data-id="<?=$staff_d['user_id']?>" <?=(@$_GET['staff'] == $staff_d['user_id']?'selected':'')?> value=""><?=$staff_user_d['name']?></option>
+							<? endwhile ?>
+						</select>
+					</div>
+					<div class="uc_uin_other">Жалпы: <?=$allorder['total']?> тг</div>
+					<div class="uc_uin_other">QR: <?=$allorder['pay_qr']?> тг</div>
+					<div class="uc_uin_other">Нал: <?=$allorder['total'] - $allorder['pay_qr']?> тг</div>
+				</div>
+			</div>
 
 		</div>
 
