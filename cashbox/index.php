@@ -166,7 +166,7 @@
 					<div class="">
 						<div class="form_im ">
 							<div class="form_span">Нөмір:</div>
-							<input type="tel" class="form_txt fr_phone btype_phone" placeholder="8 (700) 000-00-00" data-val="">
+							<input type="tel" class="form_txt fr_phone btype_phone" placeholder="8 (700) 000-00-00" data-val="<?=$cashbox_d['phone']?>" value="<?=$cashbox_d['phone']?>">
 							<i class="fal fa-phone-alt form_icon"></i>
 						</div>
 					</div>
@@ -176,7 +176,7 @@
 					<div class="">
 						<div class="form_im ">
 							<div class="form_span">Мекен-жай (адрес):</div>
-							<input type="text" class="form_txt btype_address" placeholder="" data-val="0">
+							<input type="text" class="form_txt btype_address" placeholder="" data-val="<?=$cashbox_d['address']?>" value="<?=$cashbox_d['address']?>">
 							<i class="fal fa-text form_icon"></i>
 						</div>
 					</div>
@@ -206,7 +206,7 @@
 					<div class="">
 						<div class="form_im ">
 							<div class="form_span">Жеткізу (доставка):</div>
-							<input type="tel" class="form_txt fr_price btype_delivery" placeholder="0" data-val="0">
+							<input type="tel" class="form_txt fr_price btype_delivery" placeholder="0" data-val="<?=$cashbox_d['pay_delivery']?>" value="<?=$cashbox_d['pay_delivery']?>">
 							<i class="fal fa-tenge form_icon"></i>
 						</div>
 					</div>
@@ -230,7 +230,7 @@
 					<div class="cashbox_pay_btype">
 						<div class="form_im">
 							<div class="form_span">Алдын ала төлем (предоплата):</div>
-							<input type="tel" class="form_txt fr_price btype_qr" placeholder="0" value="" data-val="">
+							<input type="tel" class="form_txt fr_price btype_qr" placeholder="0" data-val="<?=$cashbox_d['pay_qr']?>" value="<?=$cashbox_d['pay_qr']?>">
 							<i class="fal fa-tenge form_icon"></i>
 						</div>
 					</div>
