@@ -10,6 +10,11 @@
  }
  
  
+
+.new_all_up{
+    display: flex;
+    flex-direction: column-reverse;
+}
  
  
  
