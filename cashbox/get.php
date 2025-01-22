@@ -135,7 +135,7 @@
       if (!$nm) $upd = db::query("UPDATE `retail_orders` SET `number` = '$cashbox_number', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($qr) $upd = db::query("UPDATE `retail_orders` SET `pay_qr` = '$qr', `upd_dt` = '$datetime' WHERE `id`='$id'");
       else $upd = db::query("UPDATE `retail_orders` SET `pay_qr` = 0, `upd_dt` = '$datetime' WHERE `id`='$id'");
-      if ($delivery) $upd = db::query("UPDATE `retail_orders` SET `pay_delivery` = '$delivery', `upd_dt` = '$datetime' WHERE `id`='$id'");
+      if ($delivery) $upd = db::query("UPDATE `retail_orders` SET `pay_delivery` = '$delivery', `order_type` = 1, `upd_dt` = '$datetime' WHERE `id`='$id'");
       else $upd = db::query("UPDATE `retail_orders` SET `pay_delivery` = 0, `order_type` = 2, `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($phone) $upd = db::query("UPDATE `retail_orders` SET `phone` = '$phone2', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($address) $upd = db::query("UPDATE `retail_orders` SET `address` = '$address', `upd_dt` = '$datetime' WHERE `id`='$id'");

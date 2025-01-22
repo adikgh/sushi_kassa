@@ -48,23 +48,29 @@
 					<? if (mysqli_num_rows($orders) != 0): ?>
 						<? while ($buy_d = mysqli_fetch_assoc($orders)): ?>
 							<? // if ($buy_d['branch_id']) $branch_d = fun::branch($buy_d['branch_id']); ?>
+							<? $order_sts = fun::order_sts($buy_d['order_status']); ?>
 
 							<div class="uc_ui">
 								<div class="uc_uil2" >
 									<div class="uc_uil2_top">
+										<div class="or_status" style="background-color:<?=$order_sts['clr']?>;"><?=$order_sts['name_kz']?></div>
 										<div class="uc_uil2_nmb"><?=$buy_d['number']?></div>
 										<div class="uc_uil2_date">
-											<!-- <div class="uc_uil2_date1"><?//=$branch_d['name']?></div> -->
 											<div class="uc_uil2_date1">
 												<? if ($buy_d['сourier_id']): $сourier_d = fun::user($buy_d['сourier_id']); ?>
-													<?=$сourier_d['name']?> | <span class="fr_phone"><?=$сourier_d['phone']?></span>
+													<?=$сourier_d['name']?> <br> <span class="fr_phone"><?=$сourier_d['phone']?></span>
 												<? else: ?>
-													<? if ($buy_d['order_type'] == 2): ?> Собой
-													<? else: ?> Таңдалмаған <? endif ?>
+													<select name="" id="" class="on_stype" data-order-id="<?=$buy_d['id']?>" >
+														<option value="" <?=($buy_d['order_type']==1?'selected':'')?> data-id="1">Курьер</option>
+														<option value="" <?=($buy_d['order_type']==2?'selected':'')?> data-id="2">Собой</option>
+													</select>
 												<? endif ?>
 											</div>
-											<div class=""><?//=date("d-m-Y", strtotime($buy_d['ins_dt']))?> ⌛ <?=date("H:i", strtotime($buy_d['ins_dt']))?></div>
 										</div>
+									</div>
+									<br>
+									<div class="uc_uil2_date">
+										<div class=""><?//=date("d-m-Y", strtotime($buy_d['ins_dt']))?> ⌛ <?=date("H:i", strtotime($buy_d['ins_dt']))?> <?=($buy_d['preorder_dt']?'| 🔴':'')?>  <?=($buy_d['preorder_dt']?$buy_d['preorder_dt']:'')?></div>
 									</div>
 									<div class="uc_uil2_raz">
 										<div class="uc_uil2_mi">
@@ -145,8 +151,8 @@
 							?>
 
 						<? endwhile ?>
-					<? else: ?> <div class="ds_nr"><i class="fal fa-smoking"></i><p>демалыс</p></div> <? endif ?>
-				<? else: ?> <div class="ds_nr"><i class="fal fa-smoking"></i><p>демалыс</p></div> <? endif ?>
+					<? else: ?> <div class="ds_nr"><i class="fal fa-none"></i><p>демалыс</p></div> <? endif ?>
+				<? else: ?> <div class="ds_nr"><i class="fal fa-none"></i><p>демалыс</p></div> <? endif ?>
 
 			</div>
 

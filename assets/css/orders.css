@@ -57,8 +57,8 @@
    position: relative;
    width: 100%;
    background: var(--wh);
-   padding: 12px 10px;
-   border-radius: 8px;
+   padding: 20px 15px;
+   border-radius: 10px;
 }
 
 
@@ -99,7 +99,9 @@
    font-size: 16px;
    font-weight: 700;
 }
-
+.uc_uil2_date1 select{
+   border: 1px solid var(--gr5);
+}
 
 .uc_uil2_chek{
    width: 44px;
@@ -215,6 +217,20 @@
 
 
 
+
+.or_status{
+   position: absolute;
+   top: 0;
+   right: 0;
+   display: inline-block;
+   padding: 8px 10px;
+   color: var(--wh);
+   /* color: var(--cl); */
+   font-size: 16px;
+   font-weight: 700;
+   /* background: var(--gr2); */
+   border-radius: 8px;
+}
 
 
 

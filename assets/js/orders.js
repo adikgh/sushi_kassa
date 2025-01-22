@@ -80,6 +80,26 @@ $(document).ready(function() {
          error: function(data){ }
       })
 	})
+
+   // 
+	$('.on_stype').on('change', function () {
+		btn = $(this)
+      $.ajax({
+         url: "/orders/get.php?change_type",
+         type: "POST",
+         dataType: "html",
+         data: ({ 
+            id: btn.children('option:selected').attr('data-id'),
+            order_id: btn.attr('data-order-id'),
+         }),
+         success: function(data){ 
+            if (data == 'yes') location.reload();
+            console.log(data);
+         },
+         beforeSend: function(){ },
+         error: function(data){ }
+      })
+	})
    
    
    
