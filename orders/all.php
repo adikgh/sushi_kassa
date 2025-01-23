@@ -200,7 +200,7 @@
 						<div class="uc_uh_other">Курьер</div>
 						<div class="uc_uh_other">Общий сумма</div>
 						<div class="uc_uh_other">Предоплата (QR)</div>
-						<div class="uc_uh_other">Қалғаны</div>
+						<div class="uc_uh_other">Наичный</div>
 						<div class="uc_uh_other">ЗП Курьер (Доставка)</div>
 						<div class="uc_uh_other">Остаток</div>
 						<div class="uc_uh_cn"></div>
