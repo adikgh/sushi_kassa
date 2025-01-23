@@ -77,6 +77,7 @@
 
 	$allorder['total'] = 0;
 	$allorder['pay_qr'] = 0;
+	$allorder['pay_cash'] = 0;
 	$allorder['pay_delivery'] = 0;
 
 
@@ -132,7 +133,7 @@
 									</div>
 									<div class="uc_uin_other fr_price"><?=$buy_d['total']?></div>
 									<div class="uc_uin_other fr_price"><?=$buy_d['pay_qr']?> </div>
-									<div class="uc_uin_other fr_price"><?=$buy_d['total'] - $buy_d['pay_qr']?></div>
+									<div class="uc_uin_other fr_price"><?=$buy_d['pay_cash']?></div>
 									<div class="uc_uin_other fr_price"><?=($buy_d['pay_delivery']?$buy_d['pay_delivery'] + 500:0)?></div>
 									<div class="uc_uin_other fr_price"><?=($buy_d['pay_delivery']?$buy_d['total'] - $buy_d['pay_delivery'] - 500:$buy_d['total'] - $buy_d['pay_delivery'])?></div>
 									<div class="uc_uib">
@@ -146,6 +147,7 @@
 								if ($buy_d['order_status'] != 5 && $buy_d['order_status'] != 6) {
 									$allorder['total'] = $allorder['total'] + $buy_d['total'];
 									$allorder['pay_qr'] = $allorder['pay_qr'] + $buy_d['pay_qr'];
+									$allorder['pay_cash'] = $allorder['pay_cash'] + $buy_d['pay_cash'];
 									$allorder['pay_delivery'] = $allorder['pay_delivery'] + $buy_d['pay_delivery'] + 500;
 								}
 							?>
@@ -183,7 +185,7 @@
 							</div>
 							<div class="uc_uin_other fr_price"><?=$allorder['total']?></div>
 							<div class="uc_uin_other fr_price"><?=$allorder['pay_qr']?> </div>
-							<div class="uc_uin_other fr_price"><?=$allorder['total'] - $allorder['pay_qr']?></div>
+							<div class="uc_uin_other fr_price"><?=$allorder['pay_cash']?></div>
 							<div class="uc_uin_other fr_price"><?=$allorder['pay_delivery']?></div>
 							<div class="uc_uin_other fr_price"><?=$allorder['total'] - $allorder['pay_delivery']?></div>
 							<div class="uc_uib"></div>

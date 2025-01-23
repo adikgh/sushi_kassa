@@ -33,6 +33,7 @@
 
 	$allorder['total'] = 0;
 	$allorder['pay_qr'] = 0;
+	$allorder['pay_cash'] = 0;
 	$allorder['pay_delivery'] = 0;
 
 
@@ -144,7 +145,7 @@
 											<div class="uc_uil2_trt">
 												<div class="uc_uil2_trt1">Курьерге (нал)</div>
 												<div class="uc_uil2_trt2"></div>
-												<div class="uc_uil2_trt3 fr_price"><?=$buy_d['total'] - $buy_d['pay_qr']?></div>
+												<div class="uc_uil2_trt3 fr_price"><?=$buy_d['pay_cash']?></div>
 											</div>
 										</div>
 									</div>
@@ -161,6 +162,7 @@
 								if ($buy_d['order_status'] != 5 && $buy_d['order_status'] != 6) {
 									$allorder['total'] = $allorder['total'] + $buy_d['total'];
 									$allorder['pay_qr'] = $allorder['pay_qr'] + $buy_d['pay_qr'];
+									$allorder['pay_cash'] = $allorder['pay_cash'] + $buy_d['pay_cash'];
 									$allorder['pay_delivery'] = $allorder['pay_delivery'] + $buy_d['pay_delivery'] + 500;
 								}
 							?>
@@ -207,7 +209,7 @@
 					</div>
 					<div class="uc_uin_other">Жалпы: <?=$allorder['total']?> тг</div>
 					<div class="uc_uin_other">QR: <?=$allorder['pay_qr']?> тг</div>
-					<div class="uc_uin_other">Нал: <?=$allorder['total'] - $allorder['pay_qr']?> тг</div>
+					<div class="uc_uin_other">Нал: <?=$allorder['pay_cash']?> тг</div>
 				</div>
 			</div>
 
