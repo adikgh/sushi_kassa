@@ -42,6 +42,7 @@
                             $onw['number'] = 0;
                             $onw['total'] = 0;
                             $onw['pay_qr'] = 0;
+                            $onw['pay_cash'] = 0;
                             $onw['pay_delivery'] = 0;
                             $staff = db::query("select * from user_staff where positions_id = 6");
                         ?>
@@ -55,16 +56,19 @@
                                 $allorder['total'] = 0;
                                 $allorder['pay_qr'] = 0;
                                 $allorder['pay_delivery'] = 0;
+                                $allorder['pay_cash'] = 0;
                                
                                 while ($buy_d = mysqli_fetch_assoc($orders)){
                                     $allorder['total'] = $allorder['total'] + $buy_d['total'];
 								    $allorder['pay_qr'] = $allorder['pay_qr'] + $buy_d['pay_qr'];
+								    $allorder['pay_cash'] = $allorder['pay_cash'] + $buy_d['pay_cash'];
 								    $allorder['pay_delivery'] = $allorder['pay_delivery'] + $buy_d['pay_delivery'] + 500;
                                 }
 
                                 $onw['number'] = $onw['number'] + mysqli_num_rows($orders);
                                 $onw['total'] = $onw['total'] + $allorder['total'];
                                 $onw['pay_qr'] = $onw['pay_qr'] + $allorder['pay_qr'];
+                                $onw['pay_cash'] = $onw['pay_cash'] + $allorder['pay_cash'];
                                 $onw['pay_delivery'] = $onw['pay_delivery'] + $allorder['pay_delivery'];
                             ?>
 
@@ -73,16 +77,16 @@
                                 <td><?=mysqli_num_rows($orders)?></td>
                                 <td class="fr_price"><?=$allorder['total']?></td>
                                 <td class="fr_price"><?=$allorder['pay_qr']?></td>
-                                <td class="fr_price"><?=$allorder['total'] - $allorder['pay_qr']?></td>
+                                <td class="fr_price"><?=$allorder['pay_cash']?></td>
                                 <td class="fr_price"><?=$allorder['pay_delivery']?></td>
-                                <td class="fr_price btype_start" data-rask="0" data-start="<?=$allorder['total'] - $allorder['pay_qr'] - $allorder['pay_delivery']?>"><?=$allorder['total'] - $allorder['pay_qr'] - $allorder['pay_delivery']?></td>
+                                <td class="fr_price btype_start" data-rask="0" data-start="<?=$allorder['pay_cash'] - $allorder['pay_delivery']?>"><?=$allorder['pay_cash'] - $allorder['pay_delivery']?></td>
                                 <td class="">
 							        <input type="tel" class="form_txt fr_price btype_rask" placeholder="0" data-val="0" >
                                 </td>
                                 <td class="">
 							        <input type="tel" class="form_txt fr_price btype_cash" placeholder="0" data-val="0">
                                 </td>
-                                <td class="fr_price btype_kaspi"><?=$allorder['total'] - $allorder['pay_qr'] - $allorder['pay_delivery']?></td>
+                                <td class="fr_price btype_kaspi"><?=$allorder['pay_cash']- $allorder['pay_delivery']?></td>
                             </tr>
                         <? endwhile ?>
                     
@@ -106,9 +110,9 @@
                             <td><?=$onw['number']?></td>
                             <td class="fr_price"><?=$onw['total']?></td>
                             <td class="fr_price"><?=$onw['pay_qr']?></td>
-                            <td class="fr_price"><?=$onw['total'] - $onw['pay_qr']?></td>
+                            <td class="fr_price"><?=$onw['pay_cash']?></td>
                             <td class="fr_price"><?=$onw['pay_delivery']?></td>
-                            <td class="fr_price"><?=$onw['total'] - $onw['pay_qr'] - $onw['pay_delivery']?></td>
+                            <td class="fr_price"><?=$onw['pay_cash'] - $onw['pay_delivery']?></td>
                             <td class="fr_price or_rask"></td>
                             <td></td>
                             <td></td>
