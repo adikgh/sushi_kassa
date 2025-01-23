@@ -187,7 +187,7 @@
 							<div class="uc_uin_other fr_price"><?=$allorder['pay_qr']?> </div>
 							<div class="uc_uin_other fr_price"><?=$allorder['pay_cash']?></div>
 							<div class="uc_uin_other fr_price"><?=$allorder['pay_delivery']?></div>
-							<div class="uc_uin_other fr_price"><?=$allorder['total'] - $allorder['pay_delivery']?></div>
+							<div class="uc_uin_other fr_price"><?=$allorder['pay_cash'] - $allorder['pay_delivery']?></div>
 							<div class="uc_uib"></div>
 						</div>
 					</div>
@@ -200,7 +200,7 @@
 						<div class="uc_uh_other">Курьер</div>
 						<div class="uc_uh_other">Общий сумма</div>
 						<div class="uc_uh_other">Предоплата (QR)</div>
-						<div class="uc_uh_other">Наичный</div>
+						<div class="uc_uh_other">Наличный</div>
 						<div class="uc_uh_other">ЗП Курьер (Доставка)</div>
 						<div class="uc_uh_other">Остаток</div>
 						<div class="uc_uh_cn"></div>
