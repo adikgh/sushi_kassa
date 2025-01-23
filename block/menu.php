@@ -22,10 +22,10 @@
 								<a class="mp_topi <?=($menu_name=='orders'?'mp_topi_act':'')?>" href="/orders/">Тапсырыстар</a>
 							<? else: ?>
 								<a class="mp_topi <?=($menu_name=='orders'?'mp_topi_act':'')?>" href="/orders/all.php">Тапсырыстар</a>
-								<!-- <a class="mp_topi <?=($menu_name=='main'?'mp_topi_act':'')?>" href="/kassa/">Касса</a> -->
+								<a class="mp_topi <?=($menu_name=='main'?'mp_topi_act':'')?>" href="/kassa/">Касса</a>
 								<!-- <a class="mp_topi <?=($menu_name=='products'?'mp_topi_act':'')?>" href="/products/">Тауар</a> -->
 							<? endif ?>
-							<a class="mp_topi <?=($menu_name=='dashboard'?'mp_topi_act':'')?>" href="/dashboard/">Статистика</a>
+							<!-- <a class="mp_topi <?=($menu_name=='dashboard'?'mp_topi_act':'')?>" href="/dashboard/">Статистика</a> -->
 							<!-- <a class="mp_topi <?=($menu_name=='main'?'mp_topi_act':'')?>" href="/kassa/">Касса</a> -->
 							<!-- <a class="mp_topi <?=($menu_name=='return'?'mp_topi_act':'')?>" href="/return/">Возврат</a> -->
 							<!-- <a class="mp_topi <?=($menu_name=='main'?'mp_topi_act':'')?>" href="/change/">Смена</a> -->
