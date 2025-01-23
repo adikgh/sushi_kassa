@@ -81,6 +81,7 @@ $(document).ready(function() {
       })
 	})
 
+
    // 
 	$('.on_stype').on('change', function () {
 		btn = $(this)
@@ -108,6 +109,14 @@ $(document).ready(function() {
       var val = $(this).children('option:selected').attr('data-id');
       const url = new URL(window.location);
       url.searchParams.set('status', val); 
+      history.pushState(null, null, url);
+      location.reload();
+	})
+   // 
+	$('.on_sort_time').on('change', function () {
+      var val = $(this).children('option:selected').attr('data-val');
+      const url = new URL(window.location);
+      url.searchParams.set('time', val);
       history.pushState(null, null, url);
       location.reload();
 	})

@@ -7,6 +7,12 @@
 
    	$type = @$_GET['type'];
 
+	if (@$_GET['time']) {
+		$time_sort = $_GET['time'];
+		$start_cdate = date('Y-m-d 06:00:00', strtotime("$date $time_sort day"));
+		$end_cdate = date('Y-m-d 06:00:00', strtotime("$start_cdate +1 day"));
+	}
+
 
 	if (@$_GET['status'] && @$_GET['staff']) {
 		$status = $_GET['status'];
@@ -77,7 +83,7 @@
 									</div>
 									<br>
 									<div class="uc_uil2_date">
-										<div class=""><?//=date("d-m-Y", strtotime($buy_d['ins_dt']))?> ⌛ <?=date("H:i", strtotime($buy_d['ins_dt']))?> <?=($buy_d['preorder_dt']?'| 🔴':'')?>  <?=($buy_d['preorder_dt']?$buy_d['preorder_dt']:'')?></div>
+										<div class=""><?=date("d-m-Y", strtotime($buy_d['ins_dt']))?> ⌛ <?=date("H:i", strtotime($buy_d['ins_dt']))?> <?=($buy_d['preorder_dt']?'| 🔴':'')?>  <?=($buy_d['preorder_dt']?$buy_d['preorder_dt']:'')?></div>
 									</div>
 									<div class="uc_uil2_raz">
 										<div class="uc_uil2_mi">
@@ -171,6 +177,13 @@
 
 			<div class="">
 				<div class="uc_ui uc_ui69">
+					<div class="uc_uin_other">
+						<select name="status" class="on_sort_time" data-order-id="<?=$buy_d['id']?>" >
+							<option data-id="" value="" data-val="0" <?=(@$time_sort == 0?'selected':'')?>>Бүгін (<?=date('d', strtotime("$date"))?>)</option>
+							<option data-id="" value="" data-val="-1" <?=(@$time_sort == -1?'selected':'')?>>Кеше (<?=date('d', strtotime("$date -1 day"))?>)</option>
+							<option data-id="" value="" data-val="-2" <?=(@$time_sort == -2?'selected':'')?>>Алдыңғы күні (<?=date('d', strtotime("$date -2 day"))?>)</option>
+						</select>
+					</div>
 					<div class="uc_uin_other">
 						<select name="status" class="on_sort_status" data-order-id="<?=$buy_d['id']?>" >
 							<option data-id="" value="">Барлығы</option>
