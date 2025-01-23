@@ -69,7 +69,11 @@
 
 
 
-
+		// 
+		public static function report_сourier($id, $uid) {
+			$sql = db::query("select * from report_сourier where report_id = '$id' and сourier_id = '$uid'");
+			if (mysqli_num_rows($sql)) return mysqli_fetch_array($sql); else return 0;
+		}
 
 
 

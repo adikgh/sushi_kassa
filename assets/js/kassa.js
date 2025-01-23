@@ -5,26 +5,25 @@ $(document).ready(function() {
         btn = $(this)
         btype_start = Number(btn.parent().siblings('.btype_start').attr('data-start'))
         sum = Number(btn.attr('data-val'))
-
         $(this).parent().siblings('.btype_kaspi').html((btype_start - sum) + ' тг')
-
         btn.parent().siblings('.btype_start').attr('data-rask', sum)
 
-        // $('.cashbox_pay_btotol_c').attr('data-val', delivery + sum)
-        // $('.cashbox_pay_btotol_c').html((delivery + sum) + ' тг')
-        // $('.btype_qr input').val(delivery + sum)
-        // $('.btype_qr input').attr('data-val', delivery + sum)
-        // $('.cashbox_pay_bsemt').html((delivery + sum) + ' тг')
-
-        // console.log(btype_start);
-        // console.log(sum);
-
-        // all_sm = 0;
-        // $('.btype_rask').each(function() {
-        //     all_sm = all_sm + Number($(this).attr('data-val'))
-        // })
-        // $('.or_rask').html(all_sm + ' тг')
-
+        $.ajax({
+            url: "/kassa/get.php?expenses",
+            type: "POST",
+            dataType: "html",
+            data: ({ 
+                id: btn.attr('data-id'),
+                user_id: btn.attr('data-user-id'),
+                expenses: sum,
+            }),
+            success: function(data){ 
+                // if (data == 'yes') location.reload();
+                console.log(data);
+            },
+            beforeSend: function(){ },
+            error: function(data){ }
+        })
     })
     
     $('html').on('input', '.btype_cash', function () {
@@ -34,6 +33,23 @@ $(document).ready(function() {
         sum = Number(btn.attr('data-val'))
 
         $(this).parent().siblings('.btype_kaspi').html((btype_start - sum - btype_rask) + ' тг')
+
+        $.ajax({
+            url: "/kassa/get.php?cash",
+            type: "POST",
+            dataType: "html",
+            data: ({ 
+                id: btn.attr('data-id'),
+                user_id: btn.attr('data-user-id'),
+                cash: sum,
+            }),
+            success: function(data){ 
+                // if (data == 'yes') location.reload();
+                console.log(data);
+            },
+            beforeSend: function(){ },
+            error: function(data){ }
+        })
     })
 
 }) // end jquery
