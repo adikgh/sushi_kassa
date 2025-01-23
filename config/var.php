@@ -1,7 +1,7 @@
 <?
 
    // setting
-   $ver = 1.0593;
+   $ver = 1.0594;
 
    // 
    $site_set = [
@@ -18,7 +18,7 @@
    $code = rand(1000, 9999);
 
    // lang
-   $lang = 'ru';
+   $lang = 'kz';
    if (isset($_GET['lang'])) if ($_GET['lang'] == 'kz' || $_GET['lang'] == 'ru') $_SESSION['lang'] = $_GET['lang'];
    if (isset($_SESSION['lang'])) $lang = $_SESSION['lang'];
 
