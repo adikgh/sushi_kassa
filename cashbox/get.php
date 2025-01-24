@@ -165,8 +165,8 @@
 		$sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
 
       // 
-      $ins = db::query("INSERT INTO `retail_orders`(`user_id`) VALUES ('$user_id')");
-      if ($upd && $ins && $sendToTelegram) echo 'yes'; else echo "error";
+      // $ins = db::query("INSERT INTO `retail_orders`(`user_id`) VALUES ('$user_id')");
+      if ($upd && $sendToTelegram) echo 'yes'; else echo "error";
 
       exit();
 	}
