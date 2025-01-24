@@ -238,7 +238,7 @@
 					<div class="cashbox_pay_bsem">
 						<div class="form_im">
 							<div class="form_span" Наличный>Қолма-қол:</div>
-							<div class="cashbox_pay_bsemc btype_cash fr_price"><?=$total?></div>
+							<div class="cashbox_pay_bsemc btype_cash fr_price"><?=$total - $cashbox_d['pay_qr']?></div>
 						</div>
 						<!-- <div class="form_im">
 							<div class="form_span" Итог>Қорытынды:</div>
