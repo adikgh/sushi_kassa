@@ -8,4 +8,4 @@
 </body>
 </html>
 
-	<?php include "modal.php"; ?>
+	<? include "modal.php"; ?>

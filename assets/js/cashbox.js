@@ -381,8 +381,10 @@ $(document).ready(function() {
             delivery: $('.btype_delivery').attr('data-val'),
          }),
          success: function(data){
-            if (data == 'yes')  location.href = '/cashbox/';  //location.reload();
-            else if (data == 0) mess('Вам необходимо заполнить все поля')
+            if (data == 'yes') {
+               if (btn.attr('data-type') == ubd) location.href = '/orders/';
+               else location.href = '/cashbox/';  //location.reload();
+            } else if (data == 0) mess('Вам необходимо заполнить все поля')
             console.log(data);
          },
          beforeSend: function(){ },
