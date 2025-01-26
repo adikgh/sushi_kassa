@@ -370,7 +370,6 @@ $(document).ready(function() {
          dataType: "html",
          data: ({ 
             id: btn.data('id'),
-            nm: btn.data('nm'),
             phone: $('.btype_phone').attr('data-val'),
             address: $('.btype_address').attr('data-val'),
             add: $('.btype_add').attr('data-val'),
@@ -379,6 +378,7 @@ $(document).ready(function() {
             qr: $('.btype_qr').attr('data-val'),
             cash: $('.btype_cash').attr('data-val'),
             delivery: $('.btype_delivery').attr('data-val'),
+            type: btn.attr('data-type'),
          }),
          success: function(data){
             if (data == 'yes') {

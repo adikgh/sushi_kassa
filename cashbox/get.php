@@ -116,7 +116,6 @@
    // cashbox_pay
 	if(isset($_GET['cashbox_pay'])) {
 		$id = strip_tags($_POST['id']);
-		$nm = strip_tags($_POST['nm']);
 		$total = strip_tags($_POST['total']);
 		$qr = @strip_tags($_POST['qr']);
 		$cash = @strip_tags($_POST['cash']);
@@ -124,49 +123,55 @@
 		$address = @strip_tags($_POST['address']);
 		$add = @strip_tags($_POST['add']);
 		$preorder = @strip_tags($_POST['preorder']);
+		$type = @strip_tags($_POST['type']);
 
 		$phone = @strip_tags($_POST['phone']);
       $phone2 = substr($phone, 1);
 
-      
-		$cashbox_number = product::next_number_order($start_cdate, $end_cdate, $branch);
+      if ($type != 'ubd') {
+         $cashbox_number = product::next_number_order($start_cdate, $end_cdate, $branch);
+         $upd = db::query("UPDATE `retail_orders` SET `number` = '$cashbox_number', `paid` = 1, `total` = '$total', `branch_id` = '$branch', `ins_dt` = '$datetime', `upd_dt` = '$datetime' WHERE `id`='$id'");
+      } else {
+         $upd = db::query("UPDATE `retail_orders` SET `paid` = 1, `total` = '$total', `branch_id` = '$branch', `upd_dt` = '$datetime' WHERE `id`='$id'");
+      }
 
-      $upd = db::query("UPDATE `retail_orders` SET `paid` = 1, `total` = '$total', `branch_id` = '$branch', `ins_dt` = '$datetime', `upd_dt` = '$datetime' WHERE `id`='$id'");
-      if (!$nm) $upd = db::query("UPDATE `retail_orders` SET `number` = '$cashbox_number', `upd_dt` = '$datetime' WHERE `id`='$id'");
       
       if ($qr) $upd = db::query("UPDATE `retail_orders` SET `pay_qr` = '$qr', `upd_dt` = '$datetime' WHERE `id`='$id'");
       else $upd = db::query("UPDATE `retail_orders` SET `pay_qr` = 0, `upd_dt` = '$datetime' WHERE `id`='$id'");
       
       if ($delivery) $upd = db::query("UPDATE `retail_orders` SET `pay_delivery` = '$delivery', `order_type` = 1, `upd_dt` = '$datetime' WHERE `id`='$id'");
       else $upd = db::query("UPDATE `retail_orders` SET `pay_delivery` = 0, `order_type` = 2, `upd_dt` = '$datetime' WHERE `id`='$id'");
-      
+      if ($cash) $upd = db::query("UPDATE `retail_orders` SET `pay_cash` = '$cash', `upd_dt` = '$datetime' WHERE `id`='$id'");
+      else $upd = db::query("UPDATE `retail_orders` SET `pay_cash` = 0, `upd_dt` = '$datetime' WHERE `id`='$id'");
+
       if ($phone) $upd = db::query("UPDATE `retail_orders` SET `phone` = '$phone2', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($address) $upd = db::query("UPDATE `retail_orders` SET `address` = '$address', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($add) $upd = db::query("UPDATE `retail_orders` SET `additional` = '$add', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($preorder) $upd = db::query("UPDATE `retail_orders` SET `preorder_dt` = '$preorder', `upd_dt` = '$datetime' WHERE `id`='$id'");
       
-      if ($cash) $upd = db::query("UPDATE `retail_orders` SET `pay_cash` = '$cash', `upd_dt` = '$datetime' WHERE `id`='$id'");
-      else $upd = db::query("UPDATE `retail_orders` SET `pay_cash` = 0, `upd_dt` = '$datetime' WHERE `id`='$id'");
 
 
-   
-      //
-      if ($branch == 1) $chat_id = "-1002262540522"; else $chat_id = "-1002461390168";
-      $txt = '';
-      $arr = array(
-			'Номер заказ: ' => $cashbox_number,
-			'Телефон: ' => $phone,
-			'Адрес: ' => $address,
-			'Предоплата: ' => $qr,
-			'Наличный: ' => $cash,
-			'Жалпы: '   => $total,
-		);
-		foreach ($arr as $key => $value) {$txt .= "<b>".$key."</b> ".$value."%0A";};
-		$sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
 
-      // 
-      // $ins = db::query("INSERT INTO `retail_orders`(`user_id`) VALUES ('$user_id')");
-      if ($upd && $sendToTelegram) echo 'yes'; else echo "error";
+      if ($type == 'ubd') {
+         $cashboxp_d = mysqli_fetch_assoc(db::query("select * from retail_orders_products where order_id = '$id' order by ins_dt asc limit 1"));
+         $product_d = product::product($cashboxp_d['product_id']);
+
+         if ($branch == 1) $chat_id = "-1002262540522"; else $chat_id = "-1002461390168";
+         $txt = '';
+         $arr = array(
+            'Номер заказ: '   => $cashbox_number,
+            'Телефон: '       => $phone,
+            'Адрес: '         => $address,
+            'Предоплата: '    => $qr,
+            'Наличный: '      => $cash,
+            'Жалпы: '         => $total,
+            'Сет: '           => $product_d['name_ru'],
+         );
+         foreach ($arr as $key => $value) $txt .= "<b>".$key."</b> ".$value."%0A";
+         $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
+      }
+
+      if ($upd) echo 'yes'; else echo "error";
 
       exit();
 	}

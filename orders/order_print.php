@@ -10,6 +10,8 @@
     }
 
 
+    $number = 1;
+
 ?>
 
 
@@ -78,13 +80,14 @@
         <? while ($sel_d = mysqli_fetch_assoc($cashboxp)): ?>
             <? $product = product::product($sel_d['product_id'])?>
             <tr class="tr" valign="top">
-                <td align="left"><?=$product['name_ru']?></td>
+                <td align="left"><?=$number?>. <?=$product['name_ru']?></td>
                 <td align="center"><?=$sel_d['quantity']?></td>
                 <td align="right"><?=($sel_d['quantity'] * $sel_d['price'])?></td>
             </tr>
+            <? $number++ ?>
         <? endwhile ?>
             <tr class="tr" valign="top">
-                <td align="left">Доставка</td>
+                <td align="left"><?=$number?>. Доставка</td>
                 <td align="center"></td>
                 <td align="right"><?=$cashbox_d['pay_delivery']?></td>
             </tr>
@@ -103,7 +106,7 @@
         <tr class="tr">
             <td align="left"><b>К ОПЛАТЕ</b></td>
             <td></td>
-            <td align="right"><b><?=$cashbox_d['total'] - $cashbox_d['pay_qr']?></b></td>
+            <td align="right"><b><?=$cashbox_d['pay_cash']?></b></td>
         </tr>
 
         <tr class="tr_border">

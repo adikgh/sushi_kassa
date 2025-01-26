@@ -224,7 +224,7 @@
 					
 					<div class="cashbox_pay_btotol">
 						<div class="form_span">Жалпы ақшасы:</div>
-						<div class="cashbox_pay_btotol_c fr_price" data-val="<?=$total?>" data-on-val="<?=$total?>"><?=$total?></div>
+						<div class="cashbox_pay_btotol_c fr_price" data-val="<?=$total + $cashbox_d['pay_delivery']?>" data-on-val="<?=$total + $cashbox_d['pay_delivery']?>"><?=$total + $cashbox_d['pay_delivery']?></div>
 					</div>
 
 					<div class="cashbox_pay_btype">
@@ -238,7 +238,7 @@
 					<div class="cashbox_pay_bsem">
 						<div class="form_im">
 							<div class="form_span" Наличный>Қолма-қол:</div>
-							<div class="cashbox_pay_bsemc btype_cash fr_price"><?=$total - $cashbox_d['pay_qr']?></div>
+							<div class="cashbox_pay_bsemc btype_cash fr_price" data-val="<?=$total + $cashbox_d['pay_delivery'] - $cashbox_d['pay_qr']?>"><?=$total + $cashbox_d['pay_delivery'] - $cashbox_d['pay_qr']?></div>
 						</div>
 						<!-- <div class="form_im">
 							<div class="form_span" Итог>Қорытынды:</div>
@@ -248,9 +248,11 @@
 
 					<div class="form_im">
 						<? if (@$_GET['id']): ?>
-							<div class="btn cashbox_pay2" data-id="<?=$cashbox_id?>" data-nm="<?=$cashbox_d['number']?>" data-type="ubd">Сақтау</div>
+							<div class="btn btn_cl cashbox_pay2" data-id="<?=$cashbox_id?>" data-type="ubd">Сақтау</div>
+							<div class="btn cashbox_pay2 pay_print" data-id="<?=$cashbox_id?>" data-type="ubd" Продать и распечатать чек>Сату және чек шығару</div>
+						<? else: ?>
+							<div class="btn cashbox_pay2 pay_print" data-id="<?=$cashbox_id?>" data-type="check" Продать и распечатать чек>Сақтау және чек шығару</div>
 						<? endif ?>
-						<div class="btn btn_cl cashbox_pay2 pay_print" data-id="<?=$cashbox_id?>" data-nm="<?=$cashbox_d['number']?>" data-type="check" Продать и распечатать чек>Сату және чек шығару</div>
 					</div>
 				</div>
 
