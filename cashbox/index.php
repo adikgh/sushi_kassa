@@ -224,7 +224,7 @@
 					
 					<div class="cashbox_pay_btotol">
 						<div class="form_span">Жалпы ақшасы:</div>
-						<div class="cashbox_pay_btotol_c fr_price" data-val="<?=$total + $cashbox_d['pay_delivery']?>" data-on-val="<?=$total + $cashbox_d['pay_delivery']?>"><?=$total + $cashbox_d['pay_delivery']?></div>
+						<div class="cashbox_pay_btotol_c fr_price" data-val="<?=$total + $cashbox_d['pay_delivery']?>" data-on-val="<?=$total?>"><?=$total + $cashbox_d['pay_delivery']?></div>
 					</div>
 
 					<div class="cashbox_pay_btype">
