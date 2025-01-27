@@ -17,6 +17,11 @@
     
 
 
+
+
+    
+
+
 	// site setting
 	$menu_name = 'main';
 	$css = ['kassa'];
@@ -38,13 +43,14 @@
                             $onw['pay_qr'] = 0;
                             $onw['pay_cash'] = 0;
                             $onw['pay_delivery'] = 0;
+                            $onw['rask'] = 0;
+                            $onw['cash'] = 0;
+                            $onw['kaspi'] = 0;
                             $staff = db::query("select * from user_staff where positions_id = 6");
                         ?>
                         <? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
                             <? $staff_user_d = fun::user($staff_d['user_id']); ?>
                             <? $staff_id = $staff_d['user_id']; ?>
-                            <!-- <option value="" data-id="<?=$staff_d['user_id']?>" <?=($buy_d['сourier_id'] == $staff_d['user_id']?'selected':'')?>></option> -->
-                            
                             <? $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and сourier_id  = '$staff_id' and branch_id = '$branch' order by number desc"); ?>
                             <? $report_сourier_d = fun::report_сourier($cashbox_id, $staff_id); ?>
 
@@ -85,6 +91,13 @@
                                 <td class="fr_price btype_kaspi"><?=$allorder['pay_cash']- $allorder['pay_delivery'] - @$report_сourier_d['expenses'] - @$report_сourier_d['cash']?></td>
                                 <!-- <td class="fr_price btype_kaspi"><div class="btn btn_dd_cm"><i class="far fa-check-circle"></i></div></td> -->
                             </tr>
+
+                            <? 
+                                $onw['rask'] = $onw['rask'] + @$report_сourier_d['expenses'];
+                                $onw['cash'] = $onw['cash'] + @$report_сourier_d['cash'];
+                                $onw['kaspi'] = $onw['kaspi'] + ($allorder['pay_cash'] - ($allorder['pay_delivery'] + @$report_сourier_d['expenses'] + @$report_сourier_d['cash']));
+                            ?>
+
                         <? endwhile ?>
                     
                     </tbody>
@@ -111,9 +124,9 @@
                             <td class="fr_price"><?=$onw['pay_cash']?></td>
                             <td class="fr_price"><?=$onw['pay_delivery']?></td>
                             <td class="fr_price"><?=$onw['pay_cash'] - $onw['pay_delivery']?></td>
-                            <td class="fr_price or_rask"></td>
-                            <td></td>
-                            <td></td>
+                            <td class="fr_price"><?=$allorder['rask']?></td>
+                            <td class="fr_price"><?=$allorder['cash']?></td>
+                            <td class="fr_price"><?=$allorder['kaspi']?></td>
                             <!-- <td><div class="btn">Отчетты сақтау</div></td> -->
                         </tr>
                     </thead>
