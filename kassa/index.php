@@ -124,9 +124,9 @@
                             <td class="fr_price"><?=$onw['pay_cash']?></td>
                             <td class="fr_price"><?=$onw['pay_delivery']?></td>
                             <td class="fr_price"><?=$onw['pay_cash'] - $onw['pay_delivery']?></td>
-                            <td class="fr_price"><?=$allorder['rask']?></td>
-                            <td class="fr_price"><?=$allorder['cash']?></td>
-                            <td class="fr_price"><?=$allorder['kaspi']?></td>
+                            <td class="fr_price"><?=$onw['rask']?></td>
+                            <td class="fr_price"><?=$onw['cash']?></td>
+                            <td class="fr_price"><?=$onw['kaspi']?></td>
                             <!-- <td><div class="btn">Отчетты сақтау</div></td> -->
                         </tr>
                     </thead>
