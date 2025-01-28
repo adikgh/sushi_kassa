@@ -152,7 +152,7 @@
 
 
 
-      if ($type == 'ubd') {
+      if ($type != 'ubd') {
          $cashboxp_d = mysqli_fetch_assoc(db::query("select * from retail_orders_products where order_id = '$id' order by ins_dt asc limit 1"));
          $product_d = product::product($cashboxp_d['product_id']);
 
