@@ -14,7 +14,7 @@
 		$cashbox_id = $cashbox_d['id'];
 	} else {
 		$cashbox_id = (mysqli_fetch_assoc(db::query("SELECT * FROM `retail_orders` order by id desc")))['id'] + 1;
-		$ins = db::query("INSERT INTO `retail_orders`(`id`, `user_id`) VALUES ('$cashbox_id', '$user_id')");
+		$ins = db::query("INSERT INTO `retail_orders`(`id`, `user_id`, `company_id`, `branch_id`) VALUES ('$cashbox_id', '$user_id', '$company', '$branch')");
 	}
 	$cashboxp = db::query("select * from retail_orders_products where order_id = '$cashbox_id' order by ins_dt asc");
 	$number = 0; $total = 0;
