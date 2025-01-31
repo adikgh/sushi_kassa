@@ -5,6 +5,17 @@
    // header('location: /cashbox/');
 
 
+   if (@$_GET['c'] || @$_COOKIE['c']) {
+      $comp = @$_COOKIE['c']; 
+      if (@$_GET['c']) {
+         $comp = $_GET['c'];
+         setcookie('c', $comp, time() + 3600*24*30*6, '/');
+      }
+      $user_mn = db::query("select * from user_staff where positions_id in (3, 4) and company_id = '$comp'");
+   } else $user_mn = db::query("select * from user_staff where positions_id in (3, 4)");
+
+
+
 	// site setting
 	$menu_name = 'main';
 	$site_set['menu'] = false;
@@ -31,7 +42,6 @@
                   <div class="usign_cn">
 
                      <div class="sbl2_lro">
-                        <? $user_mn = db::query("select * from user_staff where positions_id  in (1, 2, 3, 4)"); ?>
                         <? while ($user_mnd = mysqli_fetch_assoc($user_mn)): ?>
                            <? $user_ds = fun::user($user_mnd['user_id']); ?>
                            <div class="sbl2_lroi loginq_clc user_id" data-id="<?=$user_ds['id']?>">

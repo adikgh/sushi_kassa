@@ -1,7 +1,7 @@
 <?
 
    // setting
-   $ver = 1.072;
+   $ver = 1.073;
 
    // 
    $site_set = [
@@ -53,15 +53,3 @@
    $token = "1581082911:AAEKW20w_-5V0Wx9tzhyThV2pjCgZtCjyc8";
    // $chat_id = "-1002461390168";
 
-
-
-
-
-
-
-
-
-
-
-
-  

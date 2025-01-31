@@ -23,7 +23,8 @@
 
 
 	// 
-	$catalog_id = 1; if (@$_SESSION['catalog_id']) $catalog_id = $_SESSION['catalog_id'];
+	$catalog_id = mysqli_fetch_assoc(db::query("select * from product_catalog where company_id = '$company' and arh is null order by number asc limit 1"))['id'];
+	if (@$_SESSION['catalog_id']) $catalog_id = $_SESSION['catalog_id'];
 
 
 	// site setting
@@ -41,7 +42,7 @@
 			<div class="hup_r">
 				<div class="">
 					<div class="hup_rct">
-						<? $catalog = db::query("select * from product_catalog where arh is null order by number asc"); ?>
+						<? $catalog = db::query("select * from product_catalog where company_id = '$company' and arh is null order by number asc"); ?>
 						<? while ($catalog_d = mysqli_fetch_assoc($catalog)): ?>
 							<div class="hup_rcti catalog_ubd" data-cashbox-id="<?=$cashbox_id?>" data-id="<?=$catalog_d['id']?>"  style="background:<?=$catalog_d['color']?>"><?=$catalog_d['name_'.$lang]?></div>
 						<? endwhile ?>

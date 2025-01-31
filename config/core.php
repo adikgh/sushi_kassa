@@ -63,10 +63,19 @@
 
    // 
    $site = mysqli_fetch_array(db::query("select * from `site` where id = 1"));
-    
+   
+   // company
+   $company = 1; 
+   if (@$user_right['company_id']) $company = $user_right['company_id'];
+   else {
+      if (isset($_GET['company'])) if ($_GET['company'] == 1 || $_GET['company'] == 2) $_SESSION['company'] = $_GET['company'];
+      if (isset($_SESSION['company'])) $branch = $_SESSION['company'];
+   }
+
    // branch
-   $branch = 1; if (@$user_right['branch_id']) $branch = $user_right['branch_id'];
-   if (@$user_right['positions_id'] != 4) {
+   $branch = 1; 
+   if (@$user_right['branch_id']) $branch = $user_right['branch_id'];
+   else {
       if (isset($_GET['branch'])) if ($_GET['branch'] == 1 || $_GET['branch'] == 2) $_SESSION['branch'] = $_GET['branch'];
       if (isset($_SESSION['branch'])) $branch = $_SESSION['branch'];
    }
