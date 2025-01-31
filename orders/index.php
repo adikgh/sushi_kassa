@@ -67,8 +67,15 @@
 													<?=$сourier_d['name']?> <br> <span class="fr_phone"><?=$сourier_d['phone']?></span>
 												<? else: ?>
 													<select name="" id="" class="on_stype" data-order-id="<?=$buy_d['id']?>" >
-														<option value="" <?=($buy_d['order_type']==1?'selected':'')?> data-id="1">Курьер</option>
-														<option value="" <?=($buy_d['order_type']==2?'selected':'')?> data-id="2">Собой</option>
+														<option value="" <?=($buy_d['order_type']==1?'selected':'')?> data-id="kr">Курьер</option>
+														<option value="" <?=($buy_d['order_type']==2?'selected':'')?> data-id="sb">Собой</option>
+														
+														<? $staff = db::query("select * from user_staff where positions_id = 6 and company_id = '$company'"); ?>
+														<? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
+															<? $staff_user_d = fun::user($staff_d['user_id']); ?>
+															<option value="" data-id="<?=$staff_d['user_id']?>"><?=$staff_user_d['name']?></option>
+														<? endwhile ?>
+
 													</select>
 												<? endif ?>
 											</div>

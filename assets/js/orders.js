@@ -84,22 +84,44 @@ $(document).ready(function() {
 
    // 
 	$('.on_stype').on('change', function () {
-		btn = $(this)
-      $.ajax({
-         url: "/orders/get.php?change_type",
-         type: "POST",
-         dataType: "html",
-         data: ({ 
-            id: btn.children('option:selected').attr('data-id'),
-            order_id: btn.attr('data-order-id'),
-         }),
-         success: function(data){ 
-            if (data == 'yes') location.reload();
-            console.log(data);
-         },
-         beforeSend: function(){ },
-         error: function(data){ }
-      })
+      btn = $(this)
+
+      if (btn.children('option:selected').attr('data-id') == 'sb' || btn.children('option:selected').attr('data-id') == 'kr') {
+         if (btn.children('option:selected').attr('data-id') == 'sb') sum = 2;
+         else sum = 1;
+         $.ajax({
+            url: "/orders/get.php?change_type",
+            type: "POST",
+            dataType: "html",
+            data: ({ 
+               id: sum,
+               order_id: btn.attr('data-order-id'),
+            }),
+            success: function(data){ 
+               if (data == 'yes') location.reload();
+               console.log(data);
+            },
+            beforeSend: function(){ },
+            error: function(data){ }
+         })
+      } else {
+         $.ajax({
+            url: "/orders/get.php?change_staff",
+            type: "POST",
+            dataType: "html",
+            data: ({ 
+               id: btn.children('option:selected').attr('data-id'),
+               order_id: btn.attr('data-order-id'),
+            }),
+            success: function(data){ 
+               if (data == 'yes') location.reload();
+               console.log(data);
+            },
+            beforeSend: function(){ },
+            error: function(data){ }
+         })
+      }
+
 	})
    
    

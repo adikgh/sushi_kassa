@@ -43,16 +43,7 @@
    
    
    
-   // 
-	if(isset($_GET['change_staff'])) {
-		$id = strip_tags($_POST['id']);
-		$order_id = strip_tags($_POST['order_id']);
-
-      $upd = db::query("UPDATE `retail_orders` SET сourier_id = '$id' WHERE id = '$order_id'");
-      echo 'yes';
-
-      exit();
-	}
+ 
 
    // 
 	if(isset($_GET['delete'])) {
@@ -88,7 +79,17 @@
 
       exit();
 	}
+   
+   // 
+   if(isset($_GET['change_staff'])) {
+      $id = strip_tags($_POST['id']);
+      $order_id = strip_tags($_POST['order_id']);
 
+      $upd = db::query("UPDATE `retail_orders` SET сourier_id = '$id' WHERE id = '$order_id'");
+      echo 'yes';
+
+      exit();
+   }
 
 
 
