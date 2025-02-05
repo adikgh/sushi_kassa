@@ -242,15 +242,10 @@ $(document).ready(function() {
             total: $('.btype_totol').attr('data-val'),
             delivery: $('.btype_delivery').attr('data-val'),
             qr: $('.btype_qr').attr('data-val'),
-            branch: btn.attr('data-branch'),
          }),
          success: function(data){
-            if (btn.attr('data-type') == 'check') {
-               
-            } else {
-               if (data == 'yes') location.reload();
-               else if (data == 0) mess('Вам необходимо заполнить все поля')
-            }
+            if (data == 'yes') location.reload();
+            else if (data == 0) mess('Вам необходимо заполнить все поля')
             console.log(data);
          },
          beforeSend: function(){ },
