@@ -112,8 +112,8 @@
 		$qr = strip_tags($_POST['qr']);
 		$cash = $total - $qr;
 
-      if ($delivery) $ins = db::query("INSERT INTO `retail_orders`(`user_id`, `number`, `paid`, `total`, `pay_qr`, `pay_cash`, `pay_delivery`, `order_type`, `company`, `branch_id`, `ins_dt`) VALUES (1, '$cashbox_number', 1, '$total', '$qr', '$cash', '$delivery', 1, '$company', '$branch', '$datetime')");
-      else $ins = db::query("INSERT INTO `retail_orders`(`user_id`, `number`, `paid`, `total`, `pay_qr`, `pay_cash`, `order_type`, `company`, `branch_id`, `ins_dt`) VALUES (1, '$cashbox_number', 1, '$total', '$qr', '$cash', 2, '$company', '$branch', '$datetime')");
+      if ($delivery) $ins = db::query("INSERT INTO `retail_orders`(`user_id`, `number`, `paid`, `total`, `pay_qr`, `pay_cash`, `pay_delivery`, `order_type`, `company_id`, `branch_id`, `ins_dt`) VALUES (1, '$cashbox_number', 1, '$total', '$qr', '$cash', '$delivery', 1, '$company', '$branch', '$datetime')");
+      else $ins = db::query("INSERT INTO `retail_orders`(`user_id`, `number`, `paid`, `total`, `pay_qr`, `pay_cash`, `order_type`, `company_id`, `branch_id`, `ins_dt`) VALUES (1, '$cashbox_number', 1, '$total', '$qr', '$cash', 2, '$company', '$branch', '$datetime')");
       
       if ($ins) echo 'yes';
       else echo 'none';
