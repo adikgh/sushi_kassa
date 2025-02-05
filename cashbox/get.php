@@ -129,7 +129,7 @@
       $phone2 = substr($phone, 1);
 
       if ($type != 'ubd') {
-         $cashbox_number = product::next_number_order($start_cdate, $end_cdate, $branch);
+         $cashbox_number = product::next_number_order($start_cdate, $end_cdate, $company, $branch);
          $upd = db::query("UPDATE `retail_orders` SET `number` = '$cashbox_number', `paid` = 1, `total` = '$total', `ins_dt` = '$datetime', `upd_dt` = '$datetime' WHERE `id`='$id'");
       } else {
          $upd = db::query("UPDATE `retail_orders` SET `paid` = 1, `total` = '$total', `upd_dt` = '$datetime' WHERE `id`='$id'");

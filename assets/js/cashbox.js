@@ -382,8 +382,11 @@ $(document).ready(function() {
          }),
          success: function(data){
             if (data == 'yes') {
+               if (btn.attr('data-print') == '1') {
+                  window.open("/orders/" + "order_print.php?" + "&orderID=" + btn.attr('data-id'), "mywin","width=570,height=570,left=250,top=50");
+               }
                if (btn.attr('data-type') == 'ubd') location.href = '/orders/';
-               else location.href = '/cashbox/';  //location.reload();
+               else location.reload();
             } else if (data == 0) mess('Вам необходимо заполнить все поля')
             console.log(data);
          },

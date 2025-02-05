@@ -170,8 +170,8 @@
 
 
 
-		public static function next_number_order($s, $e, $b) {
-			$sql = db::query("SELECT * FROM `retail_orders` where `ins_dt` BETWEEN '$s' and '$e' and `branch_id` = '$b' order by `number` desc");
+		public static function next_number_order($s, $e, $c, $b) {
+			$sql = db::query("SELECT * FROM `retail_orders` where `ins_dt` BETWEEN '$s' and '$e' and `company_id` = '$c' and `branch_id` = '$b' order by `number` desc limit 1");
 			if (mysqli_num_rows($sql)) return (mysqli_fetch_assoc($sql))['number'] + 1; else return 1;
 		}
 		
