@@ -361,38 +361,44 @@ $(document).ready(function() {
 		$('#html').removeClass('ovr_h');
 	})
 
+
+   
    // cashbox_pay
+   clc = 1;
 	$('.cashbox_pay2').on('click', function () {
-		btn = $(this)
-      $.ajax({
-         url: "/cashbox/get.php?cashbox_pay",
-         type: "POST",
-         dataType: "html",
-         data: ({ 
-            id: btn.data('id'),
-            phone: $('.btype_phone').attr('data-val'),
-            address: $('.btype_address').attr('data-val'),
-            add: $('.btype_add').attr('data-val'),
-            preorder: $('.btype_preorder').attr('data-val'),
-            total: $('.cashbox_pay_btotol_c').attr('data-val'),
-            qr: $('.btype_qr').attr('data-val'),
-            cash: $('.btype_cash').attr('data-val'),
-            delivery: $('.btype_delivery').attr('data-val'),
-            type: btn.attr('data-type'),
-         }),
-         success: function(data){
-            if (data == 'yes') {
-               if (btn.attr('data-print') == '1') {
-                  window.open("/orders/" + "order_print.php?" + "&orderID=" + btn.attr('data-id'), "mywin","width=570,height=570,left=250,top=50");
-               }
-               if (btn.attr('data-type') == 'ubd') location.href = '/orders/';
-               else location.reload();
-            } else if (data == 0) mess('Вам необходимо заполнить все поля')
-            console.log(data);
-         },
-         beforeSend: function(){ },
-         error: function(data){ }
-      })
+      if (clc == 1) {
+         btn = $(this)
+         $.ajax({
+            url: "/cashbox/get.php?cashbox_pay",
+            type: "POST",
+            dataType: "html",
+            data: ({ 
+               id: btn.data('id'),
+               phone: $('.btype_phone').attr('data-val'),
+               address: $('.btype_address').attr('data-val'),
+               add: $('.btype_add').attr('data-val'),
+               preorder: $('.btype_preorder').attr('data-val'),
+               total: $('.cashbox_pay_btotol_c').attr('data-val'),
+               qr: $('.btype_qr').attr('data-val'),
+               cash: $('.btype_cash').attr('data-val'),
+               delivery: $('.btype_delivery').attr('data-val'),
+               type: btn.attr('data-type'),
+            }),
+            success: function(data){
+               if (data == 'yes') {
+                  if (btn.attr('data-print') == '1') {
+                     window.open("/orders/" + "order_print.php?" + "&orderID=" + btn.attr('data-id'), "mywin","width=570,height=570,left=250,top=50");
+                  }
+                  if (btn.attr('data-type') == 'ubd') location.href = '/orders/';
+                  else location.reload();
+               } else if (data == 0) mess('Вам необходимо заполнить все поля')
+               console.log(data);
+            },
+            beforeSend: function(){ },
+            error: function(data){ }
+         })
+         clc++;
+      } else mess('Күтіңіз тапсырма орындалуда')
 	})
 
 
