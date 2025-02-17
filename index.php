@@ -11,7 +11,7 @@
          $comp = $_GET['c'];
          setcookie('c', $comp, time() + 3600*24*30*6, '/');
       }
-      $user_mn = db::query("select * from user_staff where positions_id in (3, 4) and company_id = '$comp'");
+      $user_mn = db::query("select * from user_staff where positions_id in (4) and company_id = '$comp'");
    } // else $user_mn = db::query("select * from user_staff where positions_id in (3, 4)");
 
 

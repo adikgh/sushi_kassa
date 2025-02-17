@@ -186,7 +186,7 @@
 
 			<div class="">
 				<div class="uc_ui uc_ui69">
-					<div class="btn cashbox_pay" style="margin-right: 15px;">Новый заказ</div>
+					<!-- <div class="btn cashbox_pay" style="margin-right: 15px;">Новый заказ</div> -->
 					<div class="uc_uin_other">
 						<select name="status" class="on_sort_time" data-order-id="<?=$buy_d['id']?>" >
 							<option data-id="" value="" data-val="0" <?=(@$time_sort == 0?'selected':'')?>>Бүгін (<?=date('d', strtotime("$date"))?>)</option>
