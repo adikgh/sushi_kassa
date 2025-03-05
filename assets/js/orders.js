@@ -39,7 +39,7 @@ $(document).ready(function() {
 
 
    // 
-	$('.on_staff').on('change', function () {
+   $('html').on('change', '.on_staff', function () {
       // id = $(this).children('option:selected').attr('data-id')
 		btn = $(this)
       $.ajax({
@@ -60,8 +60,7 @@ $(document).ready(function() {
 	})
 
 
-   // 
-	$('.on_status').on('change', function () {
+   $('html').on('change', '.on_status', function () {
       // id = $(this).children('option:selected').attr('data-id')
 		btn = $(this)
       $.ajax({
@@ -82,10 +81,8 @@ $(document).ready(function() {
 	})
 
 
-   // 
-	$('.on_stype').on('change', function () {
+   $('html').on('change', '.on_stype', function () {
       btn = $(this)
-
       if (btn.children('option:selected').attr('data-id') == 'sb' || btn.children('option:selected').attr('data-id') == 'kr') {
          if (btn.children('option:selected').attr('data-id') == 'sb') sum = 2;
          else sum = 1;
