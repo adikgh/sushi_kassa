@@ -49,13 +49,13 @@
 
 		<br><br><br>
 
-		<!-- <div class="bl_c">
-			<div class="">
-				<div class="uc_uin_other">Жалпы: <?=$allorder['total']?> тг</div>
-				<div class="uc_uin_other">QR: <?=$allorder['pay_qr']?> тг</div>
-				<div class="uc_uin_other">Нал: <?=$allorder['pay_cash']?> тг</div>
+		<div class="bl_c">
+			<div class="pp_cont">
+				<div class="uc_uin_other pp_total"></div>
+				<div class="uc_uin_other pp_qr"></div>
+				<div class="uc_uin_other pp_nal"></div>
 			</div>
-		</div> -->
+		</div>
 	
 		<div class="bl_c">
 
@@ -243,6 +243,15 @@
 		</div>
 
 	</div>
+
+	<script>
+		$(document).ready(function() {
+			$('.pp_total').html('Жалпы: <?=$allorder['total']?> тг');
+			$('.pp_qr').html('QR: <?=$allorder['pay_qr']?> тг');
+			$('.pp_nal').html('Нал: <?=$allorder['pay_cash']?> тг');
+		})
+	</script>
+
 
 <? include "../block/footer.php"; ?>
 

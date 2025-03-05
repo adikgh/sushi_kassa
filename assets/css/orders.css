@@ -271,5 +271,20 @@
    /* height: 100%; */
 }
 .uc_usn{
-   
+
+}
+
+
+
+
+.pp_cont{
+   position: relative;
+   width: 100%;
+   display: flex;
+   justify-content: flex-start;
+}
+.pp_cont .uc_uin_other{
+   position: relative;
+   display: inline-block;
+   margin-right: 30px;
 }
