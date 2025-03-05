@@ -169,13 +169,9 @@ $(document).ready(function() {
 
 
 
-
-	$('.on_print').on('click', function () {
+   $('html').on('input', '.on_print', function () {
       window.open("/orders/" + "order_print.php?" + "&orderID=" + $(this).attr('data-id'), "mywin","width=570,height=570,left=250,top=50");
 	})
-	// $('.on_print').on('click', function () {
-
-	// })
 
 
 
@@ -252,6 +248,54 @@ $(document).ready(function() {
          error: function(data){ }
       })
 	})
+
+
+
+
+
+
+
+
+   // cashbox_search
+   $('.order_search_in').on('input', function() {
+      if ($('.order_search_in').val() == '') {
+         $('.bl_ors').addClass('dsp_n')
+         $('.bl_orm').removeClass('dsp_n')
+      } else {
+
+         $.ajax({
+            url: "/orders/search.php?order_search",
+            type: "POST",
+            dataType: "html",
+            data: ({ 
+               result: $('.order_search_in').val(),
+            }),
+            success: function(data){
+               
+               $('.bl_ors').removeClass('dsp_n')
+               $('.bl_orm').addClass('dsp_n')
+
+               $('.bl_ors .uc_u').html(data)
+               $('.lazy_img').lazy({effect:"fadeIn", effectTime:300, threshold:0})
+               console.log(data)
+            },
+            beforeSend: function(){ },
+            error: function(data){ }
+         })
+      }
+   })
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }) // end jquery
