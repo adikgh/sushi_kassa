@@ -62,7 +62,7 @@
 
 
    // 
-   $site = mysqli_fetch_array(db::query("select * from `site` where id = 1"));
+   $site = mysqli_fetch_array(db::query("select * from `site` where name = 'kassa'"));
    
    // company
    $company = 1; 
