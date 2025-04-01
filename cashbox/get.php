@@ -156,7 +156,7 @@
          $cashboxp_d = mysqli_fetch_assoc(db::query("select * from retail_orders_products where order_id = '$id' order by ins_dt asc limit 1"));
          $product_d = product::product($cashboxp_d['product_id']);
 
-         if ($branch == 1) $chat_id = "-1002262540522"; else $chat_id = "-1002461390168";
+         if ($company == 1) $chat_id = "-1002262540522"; else $chat_id = "-1002356542956";
          $txt = '';
          $arr = array(
             'Номер заказ: '   => $cashbox_number,

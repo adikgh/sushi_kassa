@@ -17,7 +17,7 @@
 
 <div class="app">
     <div class="head">
-        <div class="branch_name">BANZAI</div>
+        <div class="branch_name">SUSHI - PIZZA</div>
         <? if ($cashbox_d['preorder_dt']): ?>
             <div class="pred_order">
                 <div>ПРЕДЗАКАЗ</div>
