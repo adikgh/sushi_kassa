@@ -85,7 +85,7 @@
       $id = strip_tags($_POST['id']);
       $order_id = strip_tags($_POST['order_id']);
 
-      $upd = db::query("UPDATE `retail_orders` SET сourier_id = '$id' WHERE id = '$order_id'");
+      $upd = db::query("UPDATE `retail_orders` SET сourier_id = '$id', order_status = 3 WHERE id = '$order_id'");
       echo 'yes';
 
       exit();
