@@ -968,6 +968,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	width: 45%;
 	height: calc(100vh - 44px - 10px);
 	background: var(--wh);
+	border-radius: 8px;
 }
 @media (max-width: 500px) {
 	.cash_bl1{
@@ -989,6 +990,9 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
    	width: 100%;
 	background: var(--wh);
 	height: 44px;
+
+	border-radius: 8px 8px 0 0;
+
 }
 .cash_bl1_act{}
 @media (max-width: 500px) {
@@ -1147,8 +1151,8 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 /*  */
 .form_im_slo{
 	position: relative;
-	width: 100%;
-	display: flex;
+	/* width: 100%; */
+	display: inline-flex;
 	justify-content: flex-start;
 	align-items: center;
 	flex-wrap: wrap;
@@ -1717,6 +1721,9 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 
 	background: var(--wh);
 	padding: 5px;
+
+	border-radius: 8px;
+
 }
 .hup_rcti{
 	position: relative;
@@ -1731,7 +1738,19 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	margin-right: 5px;
 
 	font-size: 14px;
+
+	cursor: pointer;
+	border-radius: 8px;
+	transition: .3s;
 }
+.hup_rcti:hover{
+	transform: scale(1.05);
+}
+.hup_rcti_act{
+	box-shadow: 0 0 0 2px var(--gr);
+}
+
+
 
 
 .hup_rcb{
@@ -1747,6 +1766,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	padding: 5px;
 
 	padding-bottom: 150px;
+	border-radius: 8px;
 }
 
 
@@ -1761,8 +1781,12 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	font-size: 14px;
 
 	cursor: pointer;
+	transition: .3s;
+	border-radius: 8px;
 }
-
+.hup_rcbi:hover{
+	transform: scale(1.05);
+}
 
 
 

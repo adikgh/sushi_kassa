@@ -34,6 +34,7 @@ $(document).ready(function() {
 
    // cashbox_search
    $('.catalog_ubd').on('click', function() {
+      btn = $(this)
 
       $.ajax({
          url: "/cashbox/product_ct.php?catalog",
@@ -47,6 +48,9 @@ $(document).ready(function() {
             $('.hup_rcb').html(data)
             // $('.lazy_img').lazy({effect:"fadeIn", effectTime:300, threshold:0})
             console.log(data)
+
+            $('.catalog_ubd').removeClass('hup_rcti_act')
+            btn.addClass('hup_rcti_act')
          },
          beforeSend: function(){ },
          error: function(data){ }
@@ -310,8 +314,8 @@ $(document).ready(function() {
    })
 
 
-   $('.form_im_slo_i').click(function(){
-		// $('.form_im_slo_i').removeClass('form_im_slo_act')
+   $('.form_im_slo_red').click(function(){
+		// $('.form_im_slo_red').removeClass('form_im_slo_act')
       // $('.form_im_slo').attr('data-type-name', $(this).attr('data-type'))
 		// $(this).addClass('form_im_slo_act')
 
@@ -337,6 +341,16 @@ $(document).ready(function() {
 		$(this).toggleClass('form_im_slo_act')
 	})
 
+   $('.btype_ynd').click(function(){
+      if (!$(this).hasClass('form_im_slo_act')) {
+         $(this).attr('data-val', 'ynd')
+      } else {
+         $(this).attr('data-val', '')
+      }
+
+		$(this).toggleClass('form_im_slo_act')
+	})
+
 
    // $('html').on('input', '.cashbox_pay_btype input', function () {
    //    total = 0;
@@ -344,7 +358,6 @@ $(document).ready(function() {
    //       total = total + Number($(this).attr('data-val'))         
    //    })
    //    $('.cashbox_pay_bsemt').html(total + ' тг')
-
    //    sum = Number($('.cashbox_pay_btotol_c').attr('data-val'))
    //    change = total - sum
    //    if (change > 0) $('.cashbox_pay_bsems').html(change + ' тг')
@@ -383,6 +396,7 @@ $(document).ready(function() {
                cash: $('.btype_cash').attr('data-val'),
                delivery: $('.btype_delivery').attr('data-val'),
                type: btn.attr('data-type'),
+               ynd: $('.btype_ynd').attr('data-val'),
             }),
             success: function(data){
                if (data == 'yes') {

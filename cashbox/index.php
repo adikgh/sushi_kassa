@@ -44,7 +44,7 @@
 					<div class="hup_rct">
 						<? $catalog = db::query("select * from product_catalog where company_id = '$company' and type = 'main' and arh is null order by number asc"); ?>
 						<? while ($catalog_d = mysqli_fetch_assoc($catalog)): ?>
-							<div class="hup_rcti catalog_ubd" data-cashbox-id="<?=$cashbox_id?>" data-id="<?=$catalog_d['id']?>"  style="background:<?=$catalog_d['color']?>"><?=$catalog_d['name_'.$lang]?></div>
+							<div class="hup_rcti catalog_ubd <?=($catalog_d['id']==$catalog_id?'hup_rcti_act':'')?>" data-cashbox-id="<?=$cashbox_id?>" data-id="<?=$catalog_d['id']?>"  style="background:<?=$catalog_d['color']?>"><?=$catalog_d['name_'.$lang]?></div>
 						<? endwhile ?>
 					</div>
 				</div>
@@ -214,10 +214,13 @@
 
 					<br>
 
-					<div class="form_im">
+					<div class="form_im form_imss">
 						<!-- <div class="form_span">Тип оплаты:</div> -->
 						<div class="form_im_slo " data-type-name="RED" data-nall="">
-							<div class="form_im_slo_i btype_red" form_im_slo_act data-type="10">RED</div>
+							<div class="form_im_slo_i form_im_slo_red btype_red " form_im_slo_act data-type="10">RED</div>
+						</div>
+						<div class="form_im_slo ">
+							<div class="form_im_slo_i btype_ynd" form_im_slo_act >YANDEX</div>
 						</div>
 					</div>
 

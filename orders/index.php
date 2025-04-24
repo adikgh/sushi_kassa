@@ -27,6 +27,7 @@
 		$staff = $_GET['staff'];
 		if ($staff == 'off') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_type = 1 and сourier_id is null and branch_id = '$branch' order by number desc");
 		elseif ($staff == 'soboi') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_type = 2 and branch_id = '$branch' order by number desc");
+		elseif ($staff == 'ynd') $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and order_type = 3 and branch_id = '$branch' order by number desc");
 		else $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and сourier_id  = '$staff'  and branch_id = '$branch' order by number desc");
 	} else $orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and paid = 1 and branch_id = '$branch' order by number desc");
 
@@ -82,6 +83,7 @@
 						<select name="staff" class="on_sort_staff" data-order-id="<?=$buy_d['id']?>" >
 							<option data-id="" value="">Барлығы</option>
 							<option data-id="soboi" <?=(@$_GET['staff'] == 'soboi'?'selected':'')?> value="">Собой</option>
+							<option data-id="ynd" <?=(@$_GET['staff'] == 'ynd'?'selected':'')?> value="">Яндекс</option>
 							<option data-id="off" <?=(@$_GET['staff'] == 'off'?'selected':'')?> value="">Таңдалмаған</option>
 							<? $staff = db::query("select * from user_staff where positions_id = 6 and company_id = '$company'"); ?>
 							<? while ($staff_d = mysqli_fetch_assoc($staff)): ?>

@@ -25,7 +25,9 @@
             </div>
         <? endif ?>
     </div>
-    <? if ($cashbox_d['order_type'] == 2): ?>
+    <? if ($cashbox_d['order_type'] == 3): ?>
+        <div class="soboi">YANDEX</div>
+    <? elseif ($cashbox_d['order_type'] == 2): ?>
         <div class="soboi">СОБОЙ</div>
     <? endif ?>
     

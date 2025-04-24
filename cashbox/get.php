@@ -124,6 +124,7 @@
 		$add = @strip_tags($_POST['add']);
 		$preorder = @strip_tags($_POST['preorder']);
 		$type = @strip_tags($_POST['type']);
+		$ynd = @strip_tags($_POST['ynd']);
 
 		$phone = @strip_tags($_POST['phone']);
       $phone2 = substr($phone, 1);
@@ -148,6 +149,8 @@
       if ($address) $upd = db::query("UPDATE `retail_orders` SET `address` = '$address', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($add) $upd = db::query("UPDATE `retail_orders` SET `additional` = '$add', `upd_dt` = '$datetime' WHERE `id`='$id'");
       if ($preorder) $upd = db::query("UPDATE `retail_orders` SET `preorder_dt` = '$preorder', `upd_dt` = '$datetime' WHERE `id`='$id'");
+      
+      if ($ynd) $upd = db::query("UPDATE `retail_orders` SET `order_type` = 3, `upd_dt` = '$datetime' WHERE `id`='$id'");
       
 
 
