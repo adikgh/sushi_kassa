@@ -43,7 +43,7 @@
       padding: 15px 0;
    }
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
    .uc_u{
       grid-template-columns: repeat(1, 1fr);
       gap: 10px;

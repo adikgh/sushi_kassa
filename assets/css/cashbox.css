@@ -1,6 +1,13 @@
 /*  */
 .app{}
 
+@media (max-width: 768px) {
+	.bl_c{
+		padding: 0 10px;
+	}
+}
+
+
 
 .mp_dspn{
 	display: none !important;
@@ -18,7 +25,12 @@
 	padding: 49px 0 5px 0;
 }
 
-
+@media (max-width: 768px) {
+	.hup_bl{
+		display: block;
+		padding: 0;
+	}
+}
 
 
 
@@ -202,7 +214,7 @@ a.uc_ui{cursor:pointer}
 	border-radius: 0;
 }
 .uc_ui:hover{background:var(--cl05)}
-/* @media (max-width: 500px) {
+/* @media (max-width: 768px) {
 	.uc_ui{
 		overflow: hidden;
 		height: 214px;
@@ -232,7 +244,7 @@ a.uc_ui{cursor:pointer}
 	font-size: 14px;
 }
 .uc_upop .uc_ui_number{width:40px}
-/* @media (max-width: 500px) {
+/* @media (max-width: 768px) {
 	.uc_ui_number{
 		position: absolute;
 		z-index: 12;
@@ -265,7 +277,7 @@ a.uc_ui{cursor:pointer}
 	align-items: center;
 	flex-wrap: wrap;
 }
-/* @media (max-width: 500px) {
+/* @media (max-width: 768px) {
 	.uc_uiln{
 		width: calc(100% - 44px - 15px);
 		margin-right: 0;
@@ -457,7 +469,7 @@ a.uc_ui{cursor:pointer}
 
 /* .uc_uil:last-child{width:100%} */
 /* .uc_ui2 .uc_uil{height:120px} */
-/* @media (max-width: 500px) {
+/* @media (max-width: 768px) {
 	.uc_uil{width:100%}
 } */
 .uc_uin_other{
@@ -513,7 +525,7 @@ a.uc_ui{cursor:pointer}
 	width: 38px;
 	padding-right: 20px;
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
 	.uc_ui_right{
 		height: 100%;
 		margin-right: 0;
@@ -622,7 +634,7 @@ a.uc_ui{cursor:pointer}
 	transition: var(--tm);
 	overflow: hidden;
 }
-@media (max-width: 500px) {.uc_uin_date_c p{display:none}}
+@media (max-width: 768px) {.uc_uin_date_c p{display:none}}
 
 .uc_uin_date_s{
 	position: relative;
@@ -970,10 +982,13 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	background: var(--wh);
 	border-radius: 8px;
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
 	.cash_bl1{
-      padding-top: 64px;
-   }
+		margin-top: 10px;
+		padding-top: 10px;
+		width: 100%;
+		height: auto;
+   	}
 }
 
 .cash_bl1_l{
@@ -995,10 +1010,10 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 
 }
 .cash_bl1_act{}
-@media (max-width: 500px) {
+@media (max-width: 768px) {
 	.cash_bl1_l{
-      top: 0;
-      height: 64px;
+      /* top: 0; */
+      /* height: 64px; */
    }
 }
 
@@ -1017,7 +1032,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	position: relative;
 	width: 50%;
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
    .cash_bl1_l .bl_c{
       padding: 0 15px 0 0;
       border-bottom-color: var(--gr3);
@@ -1046,7 +1061,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	bottom: 0;
 	margin: auto;
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
    .uc_usn input{
       padding: 0 15px 0 54px;
       border: 0;
@@ -1067,7 +1082,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	justify-content: flex-end;
    padding-right: 0;
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
 	.uc_usb{display:none}
 }
 
@@ -1081,7 +1096,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	justify-content: space-between;
 	display: none;
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
 	.uc_use{display:flex}
 }
 
@@ -1092,8 +1107,8 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	height: 44px;
 	border-bottom: 1px solid var(--gr3);
 }
-@media (max-width: 500px) {
-	.uc_uh{display:none}
+@media (max-width: 768px) {
+	/* .uc_uh{display:none} */
 }
 
 
@@ -1114,7 +1129,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 		z-index: -1;
 	}
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
 	.cash_bl1_act .cash_bl1_la{
 		top: 64px;
 	}
@@ -1351,7 +1366,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	grid-gap: 30px 20px;
 }
 @media(max-width:1440px){.bs_w{grid-template-columns:repeat(2, 1fr)}}
-@media(max-width:500px){.bs_w{grid-template-columns:repeat(1, 1fr)}}
+@media(max-width:768px){.bs_w{grid-template-columns:repeat(1, 1fr)}}
 
 .bs_wi{
 	position: relative;
@@ -1463,7 +1478,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	/* height: calc(100% - 74px); */
 	border-left: 0;
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
 	.cash_bl1_r{
 
    }
@@ -1506,7 +1521,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	/* overflow-y: auto; */
 }
 /* .uc_uc::-webkit-scrollbar{width:1px} */
-@media (max-width: 500px) {
+@media (max-width: 768px) {
 	.uc_u{
       
    }
@@ -1555,16 +1570,16 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	border-top: 1px solid var(--gr5);
 	border-left: 1px solid var(--gr5);
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
    .cash_bl1_rb{
-      width: 100%;
-      bottom: 0;
-      height: 69px;
-	   min-height: 69px;
-      border: 0;
-      border-top: 1px solid var(--gr3);
-      padding-bottom: 5px;
-      padding: 0 15px;
+		width: 100%;
+		bottom: 0;
+		height: 69px;
+		min-height: 69px;
+		border: 0;
+		border-top: 1px solid var(--gr3);
+		padding-bottom: 5px;
+		padding: 0 15px;
    }
 }
 
@@ -1582,7 +1597,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 }
 .cash_bl1_rblin{margin-right:20px}
 .cash_bl1_rblip{color:var(--red)}
-@media (max-width: 500px) {
+@media (max-width: 768px) {
    .cash_bl1_rbl{padding-right:10px}
    .cash_bl1_rbl div{font-size:20px}
    .cash_bl1_rblin{margin-right:15px}
@@ -1605,7 +1620,7 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 	padding: 0;
 	width: 120px;
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
    .cash_bl1_rbr .btn{
       height: 44px;
       min-height: 44px;
@@ -1712,6 +1727,13 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 .hup_r{
 	width: calc(55% - 5px);
 }
+
+@media (max-width: 768px) {
+	.hup_r{
+		width: 100%;
+	}
+}
+
 .hup_rct{
 	position: relative;
 	width: 100%;
