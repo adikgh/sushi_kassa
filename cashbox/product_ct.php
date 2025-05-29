@@ -8,7 +8,7 @@
     ?>
     <? $cashbox_id = @strip_tags($_POST['cashbox_id']); ?>
 
-    <? $product = db::query("select * from product where catalog_id = '$catalog_id' and arh is null order by name_kz asc"); ?>
+    <? $product = db::query("select * from product where catalog_id = '$catalog_id' and arh = 0 order by name_kz asc"); ?>
     <? while ($product_d = mysqli_fetch_assoc($product)): ?>
         <div class="hup_rcbi cashbox_add" data-oid="<?=$cashbox_id?>" data-id="<?=$product_d['id']?>">
             <div class=""><?=$product_d['name_kz']?></div>
