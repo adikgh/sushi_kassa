@@ -115,6 +115,9 @@
 
    // cashbox_pay
 	if(isset($_GET['cashbox_pay'])) {
+
+      $cmp = fun::company($company);
+
 		$id = strip_tags($_POST['id']);
 		$total = strip_tags($_POST['total']);
 		$qr = @strip_tags($_POST['qr']);
@@ -154,12 +157,11 @@
       
 
 
-
-      if ($type != 'ubd') {
+      if ($type != 'ubd' && $cmp['chat_send'] == 1) {
          $cashboxp_d = mysqli_fetch_assoc(db::query("select * from retail_orders_products where order_id = '$id' order by ins_dt asc limit 1"));
          $product_d = product::product($cashboxp_d['product_id']);
-
-         if ($company == 1) $chat_id = "-1002262540522"; else if ($company == 2) $chat_id = "-1002356542956"; else if ($company == 3) $chat_id = "-1002597134896";
+         $chat_id = $cmp['chat_id'];
+         // if ($company == 1) $chat_id = "-1002262540522"; else if ($company == 2) $chat_id = "-1002356542956"; else if ($company == 3) $chat_id = "-1002597134896";
          $txt = '';
          $arr = array(
             'Номер заказ: '   => $cashbox_number,
@@ -173,6 +175,7 @@
          foreach ($arr as $key => $value) $txt .= "<b>".$key."</b> ".$value."%0A";
          $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
       }
+      
 
       if ($upd) echo 'yes'; else echo "error";
 

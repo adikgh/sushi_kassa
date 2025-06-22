@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/> -->
 
-<title><?=@$menu['title_'.$lang]?> | <?=@$site['name']?></title>
+<title><?=@$menu['title_'.$lang]?> | <?=@$site['name_kz']?></title>
 <meta name="description" content="<?=@$menu['disc_'.$lang]?> <?=@$site['phone_view']?>">
 <meta name="keywords" content="<?=@$menu['keyw_'.$lang]?>">
 <meta name="theme-color" content="<?=@$site['color']?>">
