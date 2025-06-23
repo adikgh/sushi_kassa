@@ -4,6 +4,8 @@
 	if (!$user_id) header('location: /');
 
 
+    $cmp = fun::company($company);
+
 
 	if (@$_GET['id']) {
 		$cashbox_id = $_GET['id'];
@@ -156,6 +158,14 @@
 	<!--  -->
 	<div class="pop_bl pop_bl2 cashbox_pay_block">
 		<div class="pop_bl_a cashbox_pay_back"></div>
+
+		<div class="pop_usr_info " >
+			<div class="head_c">
+				<h4>Тұтынушы жайлы</h4>
+			</div>
+			<div class="pop_usr_info_c"></div>
+		</div>
+
 		<div class="pop_bl_c">
 			<div class="head_c">
 				<h4>Сақтау</h4>
@@ -167,7 +177,7 @@
 					<div class="">
 						<div class="form_im ">
 							<div class="form_span">Нөмір:</div>
-							<input type="tel" class="form_txt fr_phone btype_phone" placeholder="8 (700) 000-00-00" data-val="8<?=$cashbox_d['phone']?>" value="<?=$cashbox_d['phone']?>">
+							<input type="tel" class="form_txt fr_phone btype_phone" data-lenght="11" placeholder="8 (700) 000-00-00" data-val="8<?=$cashbox_d['phone']?>" value="<?=$cashbox_d['phone']?>">
 							<i class="fal fa-phone-alt form_icon"></i>
 						</div>
 					</div>
@@ -253,9 +263,9 @@
 					<div class="form_im">
 						<? if (@$_GET['id']): ?>
 							<div class="btn btn_cl cashbox_pay2" data-id="<?=$cashbox_id?>" data-type="ubd">Сақтау</div>
-							<div class="btn cashbox_pay2" data-id="<?=$cashbox_id?>" data-type="ubd" data-print="1" Продать и распечатать чек>Сату және чек шығару</div>
+							<div class="btn cashbox_pay2" data-id="<?=$cashbox_id?>" data-type="ubd" data-print="<?=$cmp['print']?>" Продать и распечатать чек>Сату және чек шығару</div>
 						<? else: ?>
-							<div class="btn cashbox_pay2" data-id="<?=$cashbox_id?>" data-type="check" data-print="1" Продать и распечатать чек>Сақтау және чек шығару</div>
+							<div class="btn cashbox_pay2" data-id="<?=$cashbox_id?>" data-type="check" data-print="<?=$cmp['print']?>" Продать и распечатать чек>Сақтау және чек шығару</div>
 						<? endif ?>
 					</div>
 				</div>

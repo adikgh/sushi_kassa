@@ -283,3 +283,20 @@
       }
    
    }
+
+
+
+
+  // cashbox_plus
+	if(isset($_GET['search_now'])) {
+		$search = strip_tags($_POST['inp']);
+      $search2 = substr($search, 1);
+      $order = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `phone` LIKE '%$search2%' limit 1");
+      if (mysqli_num_rows($order)) echo 'yes';
+      else echo 'none';
+      exit();
+	}
+
+
+
+   

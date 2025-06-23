@@ -371,6 +371,7 @@ $(document).ready(function() {
 	})
 	$('.cashbox_pay_back').click(function(){
 		$('.cashbox_pay_block').removeClass('pop_bl_act');
+      $('.pop_usr_info').removeClass('pop_usr_info_act')
 		$('#html').removeClass('ovr_h');
 	})
 
@@ -436,6 +437,43 @@ $(document).ready(function() {
       // orderPrint($(this).attr('data-id'), 'order_print.php?')
       // location.reload();
 	})
+
+
+
+
+
+   // 
+   $('html').on('input', '.btype_phone', function () {
+      if ($('.btype_phone').attr('data-sel') == 0) {
+         $('.pop_usr_info').removeClass('pop_usr_info_act')
+      } else {
+         $.ajax({
+            url: "/cashbox/get.php?search_now",
+            type: "POST",
+            dataType: "html",
+            data: ({ inp: $('.btype_phone').attr('data-val'), }),
+            success: function(data){ 
+               if (data == 'yes') {
+                  $.ajax({
+                     url: "/cashbox/search_now.php?search_now",
+                     type: "POST",
+                     dataType: "html",
+                     data: ({ inp: $('.btype_phone').attr('data-val'), }),
+                     success: function(dt){ 
+                        $('.pop_usr_info').addClass('pop_usr_info_act')
+                        $('.pop_usr_info_c').html(dt)
+                     },
+                     beforeSend: function(){ },
+                     error: function(data){ }
+                  })
+               } else console.log(data);
+            },
+            beforeSend: function(){ },
+            error: function(data){ }
+         })
+      }
+   })
+   
 
 
 

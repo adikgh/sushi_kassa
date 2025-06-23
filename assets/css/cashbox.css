@@ -1865,3 +1865,123 @@ input.uc_uin_calc_q:focus{border:1px solid var(--bl	)}
 .cash_bl1_dcin{
 	padding: 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pop_usr_info{
+	position: absolute;
+	width: 520px;
+	height: 600px;
+	background: var(--wh);
+	right: 520px;
+	top: 0;
+	border-radius: 12px 0 0 12px;
+	visibility: hidden;
+	transition: .3s;
+	opacity: 0;
+	transform: translateX(calc(100% + 50px));
+}
+.pop_usr_info_act{
+	opacity: 1;
+	visibility: visible;
+    transform: translateX(0);
+}
+@media (max-width: 1024px) {
+	.pop_usr_info{
+		display: none;
+	}
+}
+
+
+.pop_usr_info .head_c {
+    padding: 5px 26px 0 40px;
+    height: 84px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gr2);
+}
+
+.pop_usr_info_c{
+	position: relative;
+    width: 100%;
+    padding: 25px 40px 80px 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  */
+.pop_usr_info_c .uc_ui{
+   background: var(--tr);
+   margin-top: 10px;
+   padding: 0;
+}
+.pop_usr_info_c .uc_ui:hover{
+	background: var(--tr);
+}
+
+.pop_usr_info_c .uc_uil2_top{
+   position: relative;
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+.pop_usr_info_c .uc_uil2_nmb{
+   position: relative;
+   width: 54px;
+   height: 54px;
+   background: var(--cm);
+   border-radius: 8px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 20px;
+   font-weight: 700;
+   color: var(--wh);
+}
+
+
+.uc_uil2_date{
+   position: relative;
+   width: calc((100% - 44px - 30px) / 2);
+   font-size: 16px;
+}
+.uc_uil2_date:last-child{
+   width: 100%;
+}
+.uc_uil2_date div:last-child{
+   margin-top: 7px;
+}
+
