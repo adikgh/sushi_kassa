@@ -30,7 +30,7 @@
             <div class="pred_order">
                 <div>ИЗМЕНЕНО-РАСП.</div>
             </div>
-        <? elseif ($print): ?>
+        <? elseif (@$print): ?>
             <div class="pred_order">
                 <div>РАСПЕЧАТАНО</div>
             </div>
