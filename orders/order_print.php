@@ -9,7 +9,7 @@
         if (mysqli_num_rows($cashbox)) {
             $cashbox_d = mysqli_fetch_assoc($cashbox);
             $upd = db::query("UPDATE `retail_orders` SET `print` = `print` + 1 WHERE `id`='$orderID'");
-            if  ($cashbox_d['print'] > 1) $print = 1;
+            if  ($cashbox_d['print'] > 0) $print = 1;
         }
     }
 
