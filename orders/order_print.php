@@ -6,6 +6,8 @@
         $cashbox = db::query("select * from retail_orders where id = '$orderID'");
         if (mysqli_num_rows($cashbox)) {
             $cashbox_d = mysqli_fetch_assoc($cashbox);
+            $upd = db::query("UPDATE `retail_orders` SET `print` = `print` + 1 WHERE `id`='$orderID'");
+            if  ($cashbox_d['print'] > 1) $print = 1;
         }
     }
 
@@ -24,12 +26,22 @@
                 <p><?=$cashbox_d['preorder_dt']?></p>
             </div>
         <? endif ?>
+        <? if ($cashbox_d['ubd'] > 0): ?>
+            <div class="pred_order">
+                <div>ИЗМЕНЕНО-РАСП.</div>
+            </div>
+        <? elseif ($print): ?>
+            <div class="pred_order">
+                <div>РАСПЕЧАТАНО</div>
+            </div>
+        <? endif ?>
     </div>
     <? if ($cashbox_d['order_type'] == 3): ?>
         <div class="soboi">YANDEX</div>
     <? elseif ($cashbox_d['order_type'] == 2): ?>
         <div class="soboi">СОБОЙ</div>
     <? endif ?>
+
     
     <div class="head2">
         <div class="number"><?=$cashbox_d['number']?></div>

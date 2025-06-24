@@ -263,7 +263,9 @@
 					<div class="form_im">
 						<? if (@$_GET['id']): ?>
 							<div class="btn btn_cl cashbox_pay2" data-id="<?=$cashbox_id?>" data-type="ubd">Сақтау</div>
-							<div class="btn cashbox_pay2" data-id="<?=$cashbox_id?>" data-type="ubd" data-print="<?=$cmp['print']?>" Продать и распечатать чек>Сату және чек шығару</div>
+							<? if ($cmp['print'] == 1): ?>
+								<div class="btn cashbox_pay2" data-id="<?=$cashbox_id?>" data-type="ubd" data-print="1" Продать и распечатать чек>Сату және чек шығару</div>
+							<? endif ?>
 						<? else: ?>
 							<div class="btn cashbox_pay2" data-id="<?=$cashbox_id?>" data-type="check" data-print="<?=$cmp['print']?>" Продать и распечатать чек>Сақтау және чек шығару</div>
 						<? endif ?>
