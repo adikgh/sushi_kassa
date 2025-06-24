@@ -1,4 +1,6 @@
-<? include "../config/core.php"; 
+<? include "../config/core.php";
+
+    $print = 0;
 
     if (@$_GET['orderID']) {
         $orderID = $_GET['orderID'];
@@ -30,7 +32,7 @@
             <div class="pred_order">
                 <div>ИЗМЕНЕНО-РАСП.</div>
             </div>
-        <? elseif (@$print): ?>
+        <? elseif ($print == 1): ?>
             <div class="pred_order">
                 <div>РАСПЕЧАТАНО</div>
             </div>
