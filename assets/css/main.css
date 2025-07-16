@@ -1239,6 +1239,14 @@
 	height: 100vh;
 	background: var(--wh);
 }
+.sbl2_lnsb{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-size: auto 100% ;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
 
 
 .sign{
@@ -1530,4 +1538,138 @@
 .tb_con_code .tb_con_code2{
 	color: var(--gr);
 	margin-top: 3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*  */
+.oko{
+	position: relative;
+	z-index: 9999;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	top: 0;
+	left: 0;
+	transition: .3s;
+	padding: 50px 0;
+}
+.oko_act{
+   opacity: 1;
+   visibility: visible;
+}
+
+
+.oko_a{
+   position: absolute;
+   z-index: 1;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+}
+
+.oko_s{
+	position: relative;
+	width: 100%;
+	max-width: 500px;
+	/* margin: auto; */
+	background: var(--wh);
+	-webkit-box-shadow: 4px 10px 84px rgb(0 0 0 / 5%);
+	box-shadow: 4px 10px 84px rgb(0 0 0 / 5%);
+	padding: 35px 30px;
+	border-radius: 20px;
+	margin-right: 50px;
+}
+
+@media (max-width: 500px) {
+	.oko_s{
+		margin-right: 0;
+		margin-bottom: 20px;
+	}
+}
+
+.oko_s_name1{
+   position: relative;
+   text-align: center;
+   width: 100%;
+   font-size: 26px;
+   font-weight: 700;
+   color: var(--red);
+   margin-bottom: 30px;
+}
+.oko_s_name{
+   position: relative;
+   text-align: center;
+   width: 100%;
+   font-size: 20px;
+   margin-bottom: 20px;
+   font-weight: 600;
+}
+.oko_s_name2{
+   position: relative;
+   text-align: center;
+   width: 100%;
+   font-size: 20px;
+   font-weight: 600;
+}
+
+
+
+
+
+
+.oko_s_s{
+   position: relative;
+   width: 100%;
+   text-align: center;
+   font-size: 14px;
+   color: var(--bl5);
+   margin-top: 10px;
+   font-weight: 500;
+}
+
+.oko_s_p{
+   position: relative;
+   width: 100%;
+   margin-top: 30px;
+   font-size: 18px;
+   font-weight: 600;
+   text-align: center;
+}
+
+.oko_s .btn{
+   width: 100%;
+   margin-top: 15px;
+}
+.o_bl3_b .btn_red, .o_bl3_b .btn_cl{
+   margin-top: 15px;
+}
+
+
+
+
+.oko_sn{
+	position: relative;
+	width: 100%;
+	max-width: 500px;
+	background: var(--wh);
+	-webkit-box-shadow: 4px 10px 84px rgb(0 0 0 / 5%);
+	box-shadow: 4px 10px 84px rgb(0 0 0 / 5%);
+	border-radius: 20px;
+}
+.oko_sn img{
+   width: 100%;
+	border-radius: 20px;
 }

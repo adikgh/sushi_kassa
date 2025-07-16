@@ -5,6 +5,11 @@
 
 
     $cmp = fun::company($company);
+	$open = true; $result = 0;
+	if ($cmp['ins_dt'] != null && $cmp['end_dt'] != null) {
+		$result = intval((strtotime($cmp['end_dt']) - strtotime(date("d.m.Y"))) / (60*60*24));
+		if ($result <= 0) header('location: /exit.php');
+	}
 
 
 	if (@$_GET['id']) {

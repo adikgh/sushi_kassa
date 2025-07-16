@@ -5,12 +5,26 @@
    // header('location: /cashbox/');
 
 
-   if (@$_GET['c'] || @$_COOKIE['c']) {
-      $comp = @$_COOKIE['c']; 
+   if (@$_GET['c'] || @$_COOKIE['c'] || @$_SESSION['c']) {
       if (@$_GET['c']) {
          $comp = $_GET['c'];
+         $_SESSION['c'] = $comp; 
          setcookie('c', $comp, time() + 3600*24*30*6, '/');
+      } else {
+         $comp = @$_SESSION['c']; 
+         $comp = @$_COOKIE['c'];
       }
+
+      $company_d = fun::company($comp);
+      $open = true; $result = 0; $access = 0; $precent = 0;
+      if ($company_d['ins_dt'] != null && $company_d['end_dt'] != null) {
+         $result = intval((strtotime($company_d['end_dt']) - strtotime(date("d.m.Y"))) / (60*60*24));
+         if ($result <= 0) $open = false;
+
+         // $access = intval((strtotime($company_d['end_dt']) - strtotime($company_d['ins_dt'])) / (60*60*24));
+         // if (($access - $result) == 0) $precent = 0; elseif (($access - $result) < $access) $precent = round(100 / ($access / ($access - $result))); else $precent = 100;
+      }
+
       $user_mn = db::query("select * from user_staff where positions_id in (4) and company_id = '$comp'");
    } // else $user_mn = db::query("select * from user_staff where positions_id in (3, 4)");
 
@@ -27,37 +41,61 @@
 	<div class="">
 
       <? if (@$comp): ?>
-         <div class="sbl2">
 
-            <div class="sbl2_ln">
-               <div class="sbl2_lns"></div>
-            </div>
+         <? if (@$open && $comp): ?>
 
-            <div class="sign">
-               <div class="bl_c">
-                  <div class="usign_c">
+            <div class="sbl2">
 
-                     <div class="usign_head">
-                        <h5 class="usign_h">Менеджерді таңдаңыз</h5>
-                     </div>
-                     <div class="usign_cn">
+               <div class="sbl2_ln">
+                  <div class="sbl2_lns">
+                     <div class="sbl2_lnsb lazy_img" data-src="/assets/img/bag/woman-working-call-c.jpg"></div>
+                  </div>
+               </div>
 
-                        <div class="sbl2_lro">
-                           <? while ($user_mnd = mysqli_fetch_assoc($user_mn)): ?>
-                              <? $user_ds = fun::user($user_mnd['user_id']); ?>
-                              <div class="sbl2_lroi loginq_clc user_id" data-id="<?=$user_ds['id']?>">
-                                 <div class="lazy_img" data-src="/assets/uploads/users/<?=($user_ds['img']?$user_ds['img']:'Sample_User_Icon.png')?>"></div>
-                                 <p class=""><?=$user_ds['name']?> <?=$user_ds['surname']?></p>
-                              </div>
-                           <? endwhile ?>
+               <div class="sign">
+                  <div class="bl_c">
+                     <div class="usign_c">
+
+                        <div class="usign_head">
+                           <h5 class="usign_h">Менеджерді таңдаңыз</h5>
                         </div>
-                     
-                     </div>
+                        <div class="usign_cn">
 
+                           <div class="sbl2_lro">
+                              <? while ($user_mnd = mysqli_fetch_assoc($user_mn)): ?>
+                                 <? $user_ds = fun::user($user_mnd['user_id']); ?>
+                                 <div class="sbl2_lroi loginq_clc user_id" data-id="<?=$user_ds['id']?>">
+                                    <div class="lazy_img" data-src="/assets/uploads/users/Sample_User_Icon.png"></div>
+                                    <p class=""><?=$user_ds['name']?> <?=$user_ds['surname']?></p>
+                                 </div>
+                              <? endwhile ?>
+                           </div>
+                        
+                        </div>
+
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
+         <? else: ?>
+
+            <div class="bl_c">
+               <div class="oko">
+                  <div class="oko_s">
+                     <div class="oko_s_name1">Құрметті клиент сізде тестік қолдану уақыты аяқталған</div>
+                     <div class="oko_s_name">Бағдарлама құны айына <b>50.000 тг</b></div>
+                     <div class="oko_s_name2">Төлем жасау үшін QR арқылы немесе батырма арқылы жасайсыз</div>
+                     <a href="https://pay.kaspi.kz/pay/2e01nt4d" target="_blank" class="btn">Төлем жасаймын</a>
+                     <div class="oko_s_p">Whatsapp желісіне <br>чек-ті жібересіз</div>
+                     <a href="https://wa.me/77471299239" target="_blank" class="btn btn_cl">Жіберемін</a>
+                  </div>
+                  <div class="oko_sn">
+                     <img class="lazy_img" data-src="/assets/img/bag/photo_2025-07-16_18-57-52.jpg" />
+                  </div>
+               </div>
+            </div>
+
+         <? endif ?>
       <? else: ?>
          <div class="ds_nr" Пустой список><p>Сіз қате кірдіңіз</p></div>
       <? endif ?>
